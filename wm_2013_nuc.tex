@@ -1,0 +1,136 @@
+%        File: wm_2013_nuc.tex
+%     Created: Mon Aug 13 10:00 AM 2012 C
+%
+\documentclass[letterpaper]{article}
+\usepackage[top=1.0in,bottom=1.0in,left=1.0in,right=1.0in]{geometry}
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{longtable}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[usenames]{color}
+\usepackage[
+naturalnames = true, 
+colorlinks = true, 
+linkcolor = Black,
+anchorcolor = Black,
+citecolor = Black,
+menucolor = Black,
+urlcolor = Blue
+]{hyperref}
+\def\thesection       {\arabic{section}}
+\def\thesubsection     {\thesection.\alph{subsection}}
+
+%% To use the glossaries acronym package, you'll need to define any acronyms you intend to 
+%% use. You can define acronyms with \newacronym{label}[acronym]{written out form}
+%% To refer to them in the text use \gls{label}
+\usepackage[acronym,toc]{glossaries}
+\makeglossaries
+
+\author{Kathryn D. Huff
+\\ \href{mailto:khuff@anl.gov}{\texttt{khuff@anl.gov}}
+}
+
+\date{}
+\title{Geologic Nuclide Transport Models in Cyder, A Repository Analysis Software Library}
+\begin{document}
+\maketitle
+
+\input{acros}
+
+
+% 1) a descriptive title that will reflect the paper 
+%    and presentation content (define all acronyms); 
+% 2) a summary of the work conducted, 
+%    problem history and your results; 
+% 3) all authors contact information including mailing address, email addresses and phone 
+%    numbers; and 
+% 4) a brief description of the importance of the work 
+%    (what problem it addresises/solves) and its application/benefit to others.  It is 
+%very important to include all contact information for all authors listed on 
+%the abstract.  
+%Abstracts should be between 400 - 800 words and comply with the 
+%criteria stated below. Results have shown that brief abstracts that fully and 
+%effectively convey the substance and their importance have the highest 
+%ranking. Background information irrelevant to an abstract’s merits may 
+%dilute the substance and lower the ranking. The evaluation criteria on the 
+%“Abstract Rating Form” is posted on the WM website www.wmsym.org
+%under the Presenters tab as a guide for authors. Insufficient information 
+%for the reviewers may result in session misplacement, lower ranking or 
+%abstract rejection.
+
+\section{Introduction and Objectives}
+
+Repository metrics such as necessary repository footprint and peak annual dose 
+are affected by heat and radionuclide release characteristics specific to 
+variable spent fuel compositions associated with alternative fuel cycles.  For 
+this reason, a generic disposal model designed for integration with a systems 
+analysis framework is necessary for illuminating performance distinctions of 
+candidate repository geologies, designs, and engineering components in the 
+context of fuel cycle options. 
+
+The Cyder software library under development integrates with 
+the Cyclus computational fuel cycle systems analysis platform in order to 
+calculate repository performance metrics with respect to candidate fuel cycle 
+options \cite{huff_cyder_2012,huff_cyclus:_2010}. By abstraction of more 
+detailed geological nuclide transport models, Cyder aims to capture the dominant 
+physics of radionuclide transport phenomena affecting repository performance in 
+various geologic media and as a function of arbitrary spent fuel composition.
+
+To support this abstraction effort, sensitivity analyses were performed with 
+respect to various key processes and parameters affecting long-term post-closure 
+performance of geologic repositories in clay media.  Based on the detailed 
+computational Clay \gls{GDSM} developed by the \gls{UFD} campaign 
+\cite{clayton_generic_2011}, these results provide an overview of the relative 
+importance of processes that affect the repository performance of a generic clay 
+disposal concept model. 
+
+\section{Research And Development Overview}
+
+A generic repository model appropriate for systems analysis must emphasize 
+modularity and speed. The sensitivity analysis conducted using the clay 
+\gls{GDSM} tools captures the dominant physics of detailed repository 
+analysis so that abstracted models can be robustly and flexibly implemented in 
+Cyder without sacrificing simulation speed.
+
+% used existing gdsms 
+Sensitivity analyses were performed using the Clay \gls{GDSM} developed by the 
+\gls{UFD} campaign \cite{clayton_generic_2011}.  The Clay \gls{GDSM} is built on 
+the GoldSim simulation framework and contaminant transport model.  This 
+radionuclide transport toolset simulates chemical and physical attenuation 
+processes including radionuclide solubility, dispersion phenomena, and 
+reversible sorption \cite{golder_goldsim_2010, golder_goldsim_ct_2010}. Model 
+input parameters supporting modeling of these transport processes include 
+geometry specifications (e.g. repository depth), geologic material properties 
+(e.g. clay porosity), geochemical data (e.g. elemental solubility limits), and 
+environmental parameters (e.g. natural system velocity) that affect repository 
+performance  \cite{nutt_generic_2009}. 
+
+\section{Accomplishments}
+
+This work has undertaken an analysis strategy to develop a many dimensional 
+overview of the key factors in modeled repository performance. The results of 
+this work are currently are being used in combination with analytic models of 
+solute transport to improve the speed and accuracy of nuclide transport models 
+implemented in the Cyder repository analysis library.
+
+Both individual and dual parametric cases were performed and repository 
+performance was quantified by radiation dose to a hypothetical receptor.
+Individual parameter cases varied a single parameter of interest in 
+detail over a broad range of values. Dual parameter cases were 
+performed for pairs of parameters expected to exhibit some covariance. For 
+each parameter or pair of parameters, forty simulation 
+groups varied the parameter or parameters within the range considered. Each 
+case and its parametric range are detailed in Table \ref{tab:Cases}. For each 
+simulation group, a 100 realization simulation was completed. 
+
+\input{sim_cases}
+This work supported completion of the report, \cite{huff_fy12_2012}. 
+
+\bibliographystyle{acm}
+\bibliography{bibliography}
+\end{document}
+
+
