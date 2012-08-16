@@ -31,10 +31,13 @@ urlcolor = Blue
 
 \author{Kathryn D. Huff
 \\ \href{mailto:khuff@anl.gov}{\texttt{khuff@anl.gov}}
+\\ 9700 S. Cass Ave
 }
 
 \date{}
-\title{Geologic Nuclide Transport Models in Cyder, A Repository Analysis Software Library}
+
+% concise yet adequately descriptive title
+\title{Hydrologic Nuclide Transport Models in Cyder, A Geologic Disposal Software Library}
 \begin{document}
 \maketitle
 
@@ -74,15 +77,52 @@ urlcolor = Blue
 % They've been implemented in a flexible, modular way. 
 
 
-\section{Introduction and Objectives}
+% 2. How is the technical problem, issue or program and its importance clearly described?                    
+% 3. How are the results or likely results of the investigation/solutions(s) to the problem or 
+%    issue described?
+%    5 - Very clearly described and supported
+%    4 - Above-average
+%    3 - Average and somewhat unfocused in specific details
+%    2 - Below-average
+%    1 - Abstract lacks a clear issue, focus and/or results
+% 4. What is the significance of the work/results described?               
+%    4 - Significant and widely applicable
+%    3 - Applicable to a previously difficult or specific problem or issue resolution
+%    2 - Incremental improvement to/status update of an already solved problem      
+%    1 –Addresses an already resolved problem     
+%    0 - Addresses no known or significant problem or issue by the reviewer
+%5. Is the work original and new or an expansion of prior work?             
+%    2 – Presents new work/results or new insight
+%    1 - Effectively builds on previous work/results
+%    0 - Nothing significantly new in work, program, issue resolution or results
+%6. How is the information discussed likely to be of interest to attendees? 
+%    4 - Will provide an excellent presentation and be a benefit to attendees
+%    3 - Will provide an above-average presentation
+%    2 - Will result in an average presentation
+%    1 - Will be a below-average presentation
+%7. Total of the Individual Reviewer’s Scores
 
-Repository metrics such as necessary repository footprint and peak annual dose 
-are affected by heat and radionuclide release characteristics specific to 
-variable spent fuel compositions associated with alternative fuel cycles.  For 
-this reason, a generic disposal model designed for rapid calculation integration 
-with a systems analysis framework is necessary for illuminating performance 
-distinctions of candidate repository geologies, designs, and engineering 
-components in the context of fuel cycle options. 
+\section{Work Conducted}
+% Provide a summary of the work conducted:
+%      Describe the technical problem clearly
+%      support it with a method
+
+This work describes four hydrologic radionuclide transport models that resulted from 
+the abstraction of more detailed tools. A proof of principle demonstration of their 
+application will also be discussed in which they were used to represent 
+the natural and engineered barrier components of a repository concept in a 
+reducing, homogenous, generic geology. Finally, the integration of these models 
+with a fuel cycle simulation platform will be described.
+
+Component level and system level abstraction of detailed computational geologic 
+repository models has resulted in four rapid computational models of 
+hydrologic radionuclide transport at varying levels of detail. These abstracted 
+models have been implemented in Cyder, a software library of interchangeable 
+radionuclide transport models appropriate for representing natural and 
+engineered barrier components of generic geology repository concepts.
+Cyder is an open source library intended for integration with the 
+Cyclus Fuel Cycle Simulator, but with an interface suitable for linking to other 
+tools or for use as a stand-alone radionuclide transport calculation engine. 
 
 The Cyder software library under development integrates with 
 the Cyclus computational fuel cycle systems analysis platform in order to 
@@ -90,60 +130,78 @@ calculate repository performance metrics with respect to candidate fuel cycle
 options \cite{huff_cyder_2012,huff_cyclus:_2010}. By abstraction of more 
 detailed geological nuclide transport models, Cyder aims to capture the dominant 
 physics of radionuclide transport phenomena affecting repository performance in 
-various geologic media and as a function of arbitrary spent fuel composition.
+various geologic media and as a function of spent fuel composition.
 
-To support this abstraction effort, sensitivity analyses were performed with 
-respect to various key processes and parameters affecting long-term post-closure 
-performance of geologic repositories in clay media.  Based on the detailed 
-computational Clay \gls{GDSM} developed by the \gls{UFD} campaign 
-\cite{clayton_generic_2011}, these results provide an overview of the relative 
-importance of processes that affect the repository performance of a generic clay 
-disposal concept model. 
-
-\section{Research And Development Overview}
+\section{Motivation}
+% Provide a brief description of the importance of the work (what problem it 
+%   addresses/solves):
+Radionuclide containment behavior of a geologic repository is a strong function 
+of spent fuel composition, which varies among alternative fuel cycles. For this 
+reason, a generic disposal model capable of integration with a systems analysis 
+framework is necessary to illuminate performance distinctions of candidate 
+repository geologies, designs, and engineering components in the context of fuel 
+cycle options. 
 
 A generic repository model appropriate for systems analysis must emphasize 
-modularity and speed. The sensitivity analysis conducted using the clay 
-\gls{GDSM} tools captures the dominant physics of detailed repository 
-analysis so that abstracted models can be robustly and flexibly implemented in 
-Cyder without sacrificing simulation speed.
+modularity and speed while providing modeling options at various levels of 
+detail. Sensitivity analyses and abstraction efforts conducted to develop the 
+models described in this work sought to capture the dominant physics of detailed 
+repository behaviors so that abstracted models can be robustly and flexibly 
+implemented in the Cyder disposal environment library without sacrificing the 
+simulation speed required by the Cyclus fuel cycle simulator.
 
-% used existing gdsms 
-Sensitivity analyses were performed using the Clay \gls{GDSM} developed by the 
-\gls{UFD} campaign \cite{clayton_generic_2011}.  The Clay \gls{GDSM} is built on 
-the GoldSim simulation framework and contaminant transport model.  This 
-radionuclide transport toolset simulates chemical and physical attenuation 
-processes including radionuclide solubility, dispersion phenomena, and 
-reversible sorption \cite{golder_goldsim_2010, golder_goldsim_ct_2010}. Model 
-input parameters supporting modeling of these transport processes include 
-geometry specifications (e.g. repository depth), geologic material properties 
-(e.g. clay porosity), geochemical data (e.g. elemental solubility limits), and 
-environmental parameters (e.g. natural system velocity) that affect repository 
-performance  \cite{nutt_generic_2009}. 
+\section{Results}
+% Provide your results:
+%       clearly
 
-\section{Accomplishments}
+The results of this work consist of four models that are the product of an 
+abstraction effort with more detailed tools. Results of unit tests and 
+benchmarking efforts will be described as will a proof of principle base case 
+demonstration of the use of these models. The base case concept has used these 
+tools to model a generic, isotropic, permeable porous geological medium with 
+reducing geochemistry as well as waste form, waste package, and buffer models in 
+the near field.
 
-This work has undertaken an analysis strategy to develop a many dimensional 
-overview of the key factors in modeled repository performance. The results of 
-this work are currently are being used in combination with analytic models of 
-solute transport to improve the speed and accuracy of nuclide transport models 
-implemented in the Cyder repository analysis library.
+The analytic models modified by abstraction and implemented in Cyder include a 
+degradation rate model, a mixed cell model, a response function model, and a 
+one dimensional solution (Brenner, 1962) to the advection-dispersion equation.
 
-Both individual and dual parametric cases were performed and repository 
-performance was quantified by radiation dose to a hypothetical receptor.
-Individual parameter cases varied a single parameter of interest in 
-detail over a broad range of values. Dual parameter cases were 
-performed for pairs of parameters expected to exhibit some covariance. For 
-each parameter or pair of parameters, forty simulation 
-groups varied the parameter or parameters within the range considered. Each 
-case and its parametric range are detailed in Table \ref{tab:Cases}. For each 
-simulation group, a 100 realization simulation was completed. 
+The degradation rate model simulates the fractional degradation of the material 
+containment properties is the simplest of implemented models and is most 
+appropriate for simplistic waste package failure modeling. 
 
-\input{sim_cases}
-This work supported completion of the report, \cite{huff_fy12_2012}. 
+Slightly more complex, and suited to representating waste form and buffer 
+components, the mixed cell model incorporates solubility limited, congruent 
+release under the influence of elemental partitioning coefficients and diffusion 
+coefficients as well as advective velocity. Abstraction results concerning the 
+transition between primarily diffusive and primarily advective transport regimes 
+was used for benchmarking and iterative accuracy improvements in the development 
+of this model.
 
-\bibliographystyle{acm}
-\bibliography{bibliography}
+The lumped parameter, response function model implemented interchangeable piston flow, 
+exponential, and dispersion response functions and was developed by direct 
+calibration against the results of the abstraction effort.  
+
+Finally, abstraction results informed modifications implementation of an 
+analytic solution to the one dimensional advection-dispersion equation with 
+finite domain and Cauchy and Neumann boundary conditions at the inner and outer 
+boundaries, respectively. 
+
+\section{Importance to Others}
+
+The Cyder source code in which these models are implemented as well as 
+associated documentation are freely available for use by model developers in the 
+field of nuclear waste management. The application programming interface to this 
+software library is intentionally general to facilitate the incorporation of the 
+models presented here within software tools in need of a multicomponent repository 
+model.
+
+Furthermore, this work contributes to an expanding ecosystem of computational 
+models available for use with the Cyclus fuel cycle simulator. This hydrologic 
+nuclide transport library, by virtue of its capability to modularly integrate 
+with the Cyclus fuel cycle simulator has laid the foundation for integrated 
+disposal option analysis in the context of fuel cycle options. 
+
 \end{document}
 
 
