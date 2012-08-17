@@ -107,30 +107,23 @@ urlcolor = Blue
 %      Describe the technical problem clearly
 %      support it with a method
 
-This work describes four hydrologic radionuclide transport models that resulted from 
-the abstraction of more detailed tools. A proof of principle demonstration of their 
-application will also be discussed in which they were used to represent 
-the natural and engineered barrier components of a repository concept in a 
-reducing, homogenous, generic geology. Finally, the integration of these models 
-with a fuel cycle simulation platform will be described.
-
 Component level and system level abstraction of detailed computational geologic 
-repository models has resulted in four rapid computational models of 
-hydrologic radionuclide transport at varying levels of detail. These abstracted 
-models have been implemented in Cyder, a software library of interchangeable 
-radionuclide transport models appropriate for representing natural and 
-engineered barrier components of generic geology repository concepts.
-Cyder is an open source library intended for integration with the 
-Cyclus Fuel Cycle Simulator, but with an interface suitable for linking to other 
-tools or for use as a stand-alone radionuclide transport calculation engine. 
+repository models has resulted in four rapid computational models of hydrologic 
+radionuclide transport at varying levels of detail. This work describes those 
+models as well as their implementation in Cyder, a software library of 
+interchangeable radionuclide transport models appropriate for representing 
+natural and engineered barrier components of generic geology repository 
+concepts.
 
-The Cyder software library under development integrates with 
-the Cyclus computational fuel cycle systems analysis platform in order to 
-calculate repository performance metrics with respect to candidate fuel cycle 
-options \cite{huff_cyder_2012,huff_cyclus:_2010}. By abstraction of more 
-detailed geological nuclide transport models, Cyder aims to capture the dominant 
-physics of radionuclide transport phenomena affecting repository performance in 
-various geologic media and as a function of spent fuel composition.
+Also, a proof of principle demonstration was conducted in which these models 
+were used to represent the natural and engineered barrier components of a 
+repository concept in a reducing, homogenous, generic geology.  In this 
+demonstration, the Cyder open source library integrates with the Cyclus 
+computational fuel cycle systems analysis platform in order to calculate 
+repository performance metrics with respect to candidate fuel cycle options.  
+Thus, the demonstration illuminates the suitability of Cyder's interface for 
+linking to other tools as well as for use as a stand-alone radionuclide 
+transport calculation engine. 
 
 \section{Motivation}
 % Provide a brief description of the importance of the work (what problem it 
@@ -164,25 +157,25 @@ the near field.
 
 The analytic models modified by abstraction and implemented in Cyder include a 
 degradation rate model, a mixed cell model, a response function model, and a 
-one dimensional solution (Brenner, 1962) to the advection-dispersion equation.
+one-dimensional solution (Brenner, 1962) to the advection-dispersion equation.
 
-The degradation rate model simulates the fractional degradation of the material 
-containment properties is the simplest of implemented models and is most 
+The degradation rate model, simulating the fractional degradation of the material 
+containment properties, is the simplest of implemented models and is most 
 appropriate for simplistic waste package failure modeling. 
 
-Slightly more complex, and suited to representating waste form and buffer 
+Slightly more complex, and suited to representing waste form and buffer 
 components, the mixed cell model incorporates solubility limited, congruent 
-release under the influence of elemental partitioning coefficients and diffusion 
-coefficients as well as advective velocity. Abstraction results concerning the 
+release under the influence of elemental solubility limits, sorption, diffusive 
+behavior, and advective behavior. Abstraction results concerning the 
 transition between primarily diffusive and primarily advective transport regimes 
-was used for benchmarking and iterative accuracy improvements in the development 
+were used for benchmarking and to iteratively improve accuracy in the development 
 of this model.
 
-The lumped parameter, response function model implemented interchangeable piston flow, 
+The response function model implemented interchangeable piston flow, 
 exponential, and dispersion response functions and was developed by direct 
 calibration against the results of the abstraction effort.  
 
-Finally, abstraction results informed modifications implementation of an 
+Finally, abstraction results informed modifications to the implementation of an 
 analytic solution to the one dimensional advection-dispersion equation with 
 finite domain and Cauchy and Neumann boundary conditions at the inner and outer 
 boundaries, respectively. 
@@ -190,11 +183,11 @@ boundaries, respectively.
 \section{Importance to Others}
 
 The Cyder source code in which these models are implemented as well as 
-associated documentation are freely available for use by model developers in the 
-field of nuclear waste management. The application programming interface to this 
-software library is intentionally general to facilitate the incorporation of the 
-models presented here within software tools in need of a multicomponent repository 
-model.
+associated documentation are freely available to interested researchers and 
+potential model developers. The application programming interface to this 
+software library is intentionally general, facilitating the incorporation of the 
+models presented here within external software tools in need of a multicomponent 
+repository model.
 
 Furthermore, this work contributes to an expanding ecosystem of computational 
 models available for use with the Cyclus fuel cycle simulator. This hydrologic 
