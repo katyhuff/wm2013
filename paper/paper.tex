@@ -1,0 +1,230 @@
+%        File: wm_2013_nuc.tex
+%     Created: Mon Aug 13 10:00 AM 2012 C
+%
+\documentclass[letterpaper]{article}
+\usepackage[top=1.0in,bottom=1.0in,left=1.0in,right=1.0in]{geometry}
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{indentfirst}
+\usepackage{longtable}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[usenames]{color}
+\usepackage[
+naturalnames = true, 
+colorlinks = true, 
+linkcolor = Black,
+anchorcolor = Black,
+citecolor = Black,
+menucolor = Black,
+urlcolor = Blue
+]{hyperref}
+\def\thesection       {\arabic{section}}
+\def\thesubsection     {\thesection.\alph{subsection}}
+
+%% To use the glossaries acronym package, you'll need to define any acronyms you intend to 
+%% use. You can define acronyms with \newacronym{label}[acronym]{written out form}
+%% To refer to them in the text use \gls{label}
+\usepackage[acronym,toc]{glossaries}
+\makeglossaries
+
+\author{Kathryn D. Huff
+\\ \href{mailto:khuff@anl.gov}{\texttt{khuff@anl.gov}}
+\\ 9700 S. Cass Ave
+}
+
+\date{}
+
+% concise yet adequately descriptive title
+\title{Hydrologic Nuclide Transport Models in Cyder, A Geologic Disposal Software Library}
+\begin{document}
+\maketitle
+
+\input{acros}
+
+
+% 1) a descriptive title that will reflect the paper 
+%    and presentation content (define all acronyms); 
+% 2) a summary of the work conducted, 
+%    problem history and your results; 
+% 3) all authors contact information including mailing address, email addresses and phone 
+%    numbers; and 
+% 4) a brief description of the importance of the work 
+%    (what problem it addresises/solves) and its application/benefit to others.  
+
+
+% Abstracts should be between 400 - 800 words and comply with the 
+% criteria stated below. Results have shown that brief abstracts that fully and 
+% effectively convey the substance and their importance have the highest 
+% ranking. Background information irrelevant to an abstract’s merits may 
+% dilute the substance and lower the ranking. The evaluation criteria on the 
+% “Abstract Rating Form” is posted on the WM website www.wmsym.org
+% under the Presenters tab as a guide for authors. Insufficient information 
+% for the reviewers may result in session misplacement, lower ranking or 
+% abstract rejection.
+
+% Some analytical models have been created for cyder, many levels of detail 
+% % Degradation Rate
+% % Mixed Cell 
+% % Lumped Param
+% % OneDimPPM
+% Some sensitivity analyses have been conducted to improve the speed 
+% % gdsm
+% % what params
+% %  
+% % 
+% They've been implemented in a flexible, modular way. 
+
+
+% 2. How is the technical problem, issue or program and its importance clearly described?                    
+% 3. How are the results or likely results of the investigation/solutions(s) to the problem or 
+%    issue described?
+%    5 - Very clearly described and supported
+%    4 - Above-average
+%    3 - Average and somewhat unfocused in specific details
+%    2 - Below-average
+%    1 - Abstract lacks a clear issue, focus and/or results
+% 4. What is the significance of the work/results described?               
+%    4 - Significant and widely applicable
+%    3 - Applicable to a previously difficult or specific problem or issue resolution
+%    2 - Incremental improvement to/status update of an already solved problem      
+%    1 –Addresses an already resolved problem     
+%    0 - Addresses no known or significant problem or issue by the reviewer
+%5. Is the work original and new or an expansion of prior work?             
+%    2 – Presents new work/results or new insight
+%    1 - Effectively builds on previous work/results
+%    0 - Nothing significantly new in work, program, issue resolution or results
+%6. How is the information discussed likely to be of interest to attendees? 
+%    4 - Will provide an excellent presentation and be a benefit to attendees
+%    3 - Will provide an above-average presentation
+%    2 - Will result in an average presentation
+%    1 - Will be a below-average presentation
+%7. Total of the Individual Reviewer’s Scores
+\section*{ABSTRACT}
+\section*{INTRODUCTION}
+\section*{<+FIRSTORDERHEADINGS+>}
+
+\section{INTRODUCTION}
+% Provide a summary of the work conducted:
+%      Describe the technical problem clearly
+%      support it with a method
+
+Component level and system level abstraction of detailed computational geologic 
+repository models has resulted in four rapid computational models of hydrologic 
+radionuclide transport at varying levels of detail. This work describes those 
+models as well as their implementation in Cyder, a software library of 
+interchangeable radionuclide transport models appropriate for representing 
+natural and engineered barrier components of generic geology repository 
+concepts.
+
+Also, a proof of principle demonstration was conducted in which these models 
+were used to represent the natural and engineered barrier components of a 
+repository concept in a reducing, homogenous, generic geology.  In this 
+demonstration, the Cyder open source library integrates with the Cyclus 
+computational fuel cycle systems analysis platform in order to calculate 
+repository performance metrics with respect to candidate fuel cycle options.  
+Thus, the demonstration illuminates the suitability of Cyder's interface for 
+linking to other tools as well as for use as a stand-alone radionuclide 
+transport calculation engine. 
+
+\section*{MOTIVATION}
+% Provide a brief description of the importance of the work (what problem it 
+%   addresses/solves):
+Radionuclide containment behavior of a geologic repository is a strong function 
+of spent fuel composition, which varies among alternative fuel cycles. For this 
+reason, a generic disposal model capable of integration with a systems analysis 
+framework is necessary to illuminate performance distinctions of candidate 
+repository geologies, designs, and engineering components in the context of fuel 
+cycle options. 
+
+A generic repository model appropriate for systems analysis must emphasize 
+modularity and speed while providing modeling options at various levels of 
+detail. Sensitivity analyses and abstraction efforts conducted to develop the 
+models described in this work sought to capture the dominant physics of detailed 
+repository behaviors so that abstracted models can be robustly and flexibly 
+implemented in the Cyder disposal environment library without sacrificing the 
+simulation speed required by the Cyclus fuel cycle simulator.
+
+\section*{DESCRIPTION OF THE MODELS}
+
+The results of this work consist of four models that are the product of an 
+abstraction effort with more detailed tools. Results of unit tests and 
+benchmarking efforts will be described as will a proof of principle base case 
+demonstration of the use of these models. The base case concept has used these 
+tools to model a generic, isotropic, permeable porous geological medium with 
+reducing geochemistry as well as waste form, waste package, and buffer models in 
+the near field.
+
+The analytic models modified by abstraction and implemented in Cyder include a 
+degradation rate model, a mixed cell model, a response function model, and a 
+one-dimensional solution (Leij and Van Genuchten) to the advection-dispersion equation.
+
+\subsection*{Degradation Rate Based Model}
+
+The degradation rate model, simulating the fractional degradation of the material 
+containment properties, is the simplest of implemented models and is most 
+appropriate for simplistic waste package failure modeling. 
+
+\subsection*{Mixed Cell Model}
+
+Slightly more complex and suited to representing waste form and buffer 
+components, the mixed cell model incorporates solubility limited, congruent 
+release under the influence of elemental solubility limits, sorption, diffusive 
+behavior, and advective behavior. Abstraction results concerning the 
+transition between primarily diffusive and primarily advective transport regimes 
+were used for benchmarking and to iteratively improve accuracy in the development 
+of this model.
+
+\subsection*{Lumped Parameter Response Function Model}
+
+The response function model implemented interchangeable piston flow, 
+exponential, and dispersion response functions and was developed by direct 
+calibration against the results of the abstraction effort.  
+
+\subsection*{One Dimensional Advection Dispersion Solution with Cauchy Boundary 
+Conditions}
+
+Finally, abstraction results informed modifications to the implementation of an 
+analytic solution to the one dimensional advection-dispersion equation with 
+finite domain and Cauchy and Neumann boundary conditions at the inner and outer 
+boundaries, respectively. 
+
+\section*{MODEL INTERFACES}
+
+
+\section*{BASE CASE DEMONSTRATION}
+
+A base case simulation was conducted as a proof of principle demonstration of 
+the modularity and interchangeability of these models. The contaminant transport 
+models were used to represent the natural and engineered barrier components of a 
+repository concept in a reducing, homogenous, saturated clay environment.  In 
+this demonstration, the Cyder open source library integrates with the Cyclus 
+computational fuel cycle systems analysis platform in order to calculate 
+repository performance metrics with respect to candidate fuel cycle options.  
+Thus, the demonstration illuminates the suitability of Cyder's interface for 
+linking to other tools as well as for use as a stand-alone radionuclide 
+transport calculation engine.
+
+\section*{RESULTS}
+% Provide your results:
+%       clearly
+
+\section{Importance to Others}
+
+The Cyder source code in which these models are implemented as well as 
+associated documentation are freely available to interested researchers and 
+potential model developers. The application programming interface to this 
+software library is intentionally general, facilitating the incorporation of the 
+models presented here within external software tools in need of a multicomponent 
+repository model.
+
+Furthermore, this work contributes to an expanding ecosystem of computational 
+models available for use with the Cyclus fuel cycle simulator. This hydrologic 
+nuclide transport library, by virtue of its capability to modularly integrate 
+with the Cyclus fuel cycle simulator has laid the foundation for integrated 
+disposal option analysis in the context of fuel cycle options. 
+
+\end{document}
+
+
