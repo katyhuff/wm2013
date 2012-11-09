@@ -102,33 +102,25 @@ urlcolor = Blue
 %    1 - Will be a below-average presentation
 %7. Total of the Individual Reviewer’s Scores
 \section*{ABSTRACT}
-\section*{INTRODUCTION}
-\section*{<+FIRSTORDERHEADINGS+>}
-
-\section{INTRODUCTION}
-% Provide a summary of the work conducted:
-%      Describe the technical problem clearly
-%      support it with a method
 
 Component level and system level abstraction of detailed computational geologic 
 repository models has resulted in four rapid computational models of hydrologic 
-radionuclide transport at varying levels of detail. This work describes those 
-models as well as their implementation in Cyder, a software library of 
+radionuclide transport at varying levels of detail. Those models are described, 
+as is their implementation in Cyder, a software library of 
 interchangeable radionuclide transport models appropriate for representing 
 natural and engineered barrier components of generic geology repository 
-concepts.
-
-Also, a proof of principle demonstration was conducted in which these models 
+concepts. A proof of principle demonstration was also conducted in which these models 
 were used to represent the natural and engineered barrier components of a 
-repository concept in a reducing, homogenous, generic geology.  In this 
-demonstration, the Cyder open source library integrates with the Cyclus 
+repository concept in a reducing, homogenous, generic geology. 
+In this demonstration, the Cyder open source library integrates with the Cyclus 
 computational fuel cycle systems analysis platform in order to calculate 
 repository performance metrics with respect to candidate fuel cycle options.  
-Thus, the demonstration illuminates the suitability of Cyder's interface for 
-linking to other tools as well as for use as a stand-alone radionuclide 
-transport calculation engine. 
 
-\section*{MOTIVATION}
+\section*{INTRODUCTION}
+% Provide a summary of the work conducted:
+%      Describe the technical problem clearly
+%      support it with a method
+% SubSection: Motivation
 % Provide a brief description of the importance of the work (what problem it 
 %   addresses/solves):
 Radionuclide containment behavior of a geologic repository is a strong function 
@@ -146,13 +138,14 @@ repository behaviors so that abstracted models can be robustly and flexibly
 implemented in the Cyder disposal environment library without sacrificing the 
 simulation speed required by the Cyclus fuel cycle simulator.
 
+
 \section*{DESCRIPTION OF THE MODELS}
 
 The results of this work consist of four models that are the product of an 
 abstraction effort with more detailed tools. Results of unit tests and 
 benchmarking efforts will be described as will a proof of principle base case 
-demonstration of the use of these models. The base case concept has used these 
-tools to model a generic, isotropic, permeable porous geological medium with 
+demonstration of the use of these models. The base case demonstration has used these 
+models to represent a generic, isotropic, permeable porous geological medium with 
 reducing geochemistry as well as waste form, waste package, and buffer models in 
 the near field.
 
@@ -192,13 +185,16 @@ boundaries, respectively.
 
 \section*{MODEL INTERFACES}
 
+The interfaces between the models are essential to the understanding of the 
+models themselves. The interfaces define boundary conditions in a number of 
+forms based on information available internally to the component. 
 
 \section*{BASE CASE DEMONSTRATION}
 
 A base case simulation was conducted as a proof of principle demonstration of 
-the modularity and interchangeability of these models. The contaminant transport 
-models were used to represent the natural and engineered barrier components of a 
-repository concept in a reducing, homogenous, saturated clay environment.  In 
+the modularity and interchangeability of these models. The simplest of the contaminant 
+transport models was used to represent the natural and engineered barrier 
+components of a repository concept. This concept consisted of a  saturated clay environment.  In 
 this demonstration, the Cyder open source library integrates with the Cyclus 
 computational fuel cycle systems analysis platform in order to calculate 
 repository performance metrics with respect to candidate fuel cycle options.  
