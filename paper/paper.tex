@@ -22,6 +22,8 @@ urlcolor = Blue
 ]{hyperref}
 \def\thesection       {\arabic{section}}
 \def\thesubsection     {\thesection.\alph{subsection}}
+\newcommand{\Cyclus}{\textsc{Cyclus}}
+\DeclareMathOperator{\erfc}{erfc}
 
 %% To use the glossaries acronym package, you'll need to define any acronyms you intend to 
 %% use. You can define acronyms with \newacronym{label}[acronym]{written out form}
@@ -104,7 +106,7 @@ urlcolor = Blue
 \section*{ABSTRACT}
 
 Component level and system level abstraction of detailed computational geologic 
-repository models has resulted in four rapid computational models of hydrologic 
+repository models have resulted in four rapid computational models of hydrologic 
 radionuclide transport at varying levels of detail. Those models are described, 
 as is their implementation in Cyder, a software library of 
 interchangeable radionuclide transport models appropriate for representing 
@@ -153,35 +155,13 @@ The analytic models modified by abstraction and implemented in Cyder include a
 degradation rate model, a mixed cell model, a response function model, and a 
 one-dimensional solution (Leij and Van Genuchten) to the advection-dispersion equation.
 
-\subsection*{Degradation Rate Based Model}
+\input{deg_rate/deg_rate}
 
-The degradation rate model, simulating the fractional degradation of the material 
-containment properties, is the simplest of implemented models and is most 
-appropriate for simplistic waste package failure modeling. 
+\input{mixed_cell/mixed_cell}
 
-\subsection*{Mixed Cell Model}
+\input{lumped/lumped}
 
-Slightly more complex and suited to representing waste form and buffer 
-components, the mixed cell model incorporates solubility limited, congruent 
-release under the influence of elemental solubility limits, sorption, diffusive 
-behavior, and advective behavior. Abstraction results concerning the 
-transition between primarily diffusive and primarily advective transport regimes 
-were used for benchmarking and to iteratively improve accuracy in the development 
-of this model.
-
-\subsection*{Lumped Parameter Response Function Model}
-
-The response function model implemented interchangeable piston flow, 
-exponential, and dispersion response functions and was developed by direct 
-calibration against the results of the abstraction effort.  
-
-\subsection*{One Dimensional Advection Dispersion Solution with Cauchy Boundary 
-Conditions}
-
-Finally, abstraction results informed modifications to the implementation of an 
-analytic solution to the one dimensional advection-dispersion equation with 
-finite domain and Cauchy and Neumann boundary conditions at the inner and outer 
-boundaries, respectively. 
+\input{one_dim_ppm/one_dim_ppm}
 
 \section*{MODEL INTERFACES}
 
