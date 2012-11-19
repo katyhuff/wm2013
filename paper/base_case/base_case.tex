@@ -1,0 +1,29 @@
+
+A base case simulation was conducted as a proof of principle demonstration of 
+the modularity and interchangeability of these models. The simplest of the 
+contaminant transport models was used to represent the natural and engineered 
+barrier components of a repository concept. This concept consisted of a  
+saturated clay environment.  In this demonstration, the Cyder open source 
+library integrates with the Cyclus computational fuel cycle systems analysis 
+platform in order to calculate repository performance metrics with respect to 
+candidate fuel cycle options.  Thus, the demonstration illuminates the 
+suitability of Cyder's interface for linking to other tools as well as for use 
+as a stand-alone radionuclide transport calculation engine.
+
+The demonstration case is an empty software architecture in which to implement 
+the physical models. This demonstration has built and tested component module 
+loading of models and data, information passing between components represented by 
+degradation rate nuclide transport models, and database writing.
+
+
+  \begin{figure}[htbp!]
+    \begin{center}
+      \includegraphics[width=.5\textwidth]{base_case/componentLoading.eps}
+      \caption{Waste form, waste package, buffer, and far field components 
+        posess transport behavior selected from available transport 
+        models, are parameterized by user data, and are loaded modularly 
+      into a cohesive framework.}
+    \end{center}
+  \end{figure}
+
+  \input{base_case/base_case_table}
