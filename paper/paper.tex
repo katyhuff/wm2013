@@ -3,11 +3,9 @@
 %
 \documentclass[letterpaper]{article}
 \usepackage[top=1.0in,bottom=1.0in,left=1.0in,right=1.0in]{geometry}
-\usepackage{times}
 \usepackage{amssymb}
 \usepackage{graphicx}
-\usepackage{longtable}
-\usepackage{amsfonts}
+%\usepackage{amsfonts}
 \usepackage{amsmath}
 \usepackage[usenames]{color}
 \usepackage[
@@ -22,27 +20,17 @@ urlcolor = Blue
 \def\thesection       {\arabic{section}}
 \def\thesubsection     {\thesection.\alph{subsection}}
 \newcommand{\Cyclus}{\textsc{Cyclus}}
-\DeclareMathOperator{\erfc}{erfc}
 
-%% To use the glossaries acronym package, you'll need to define any acronyms you intend to 
-%% use. You can define acronyms with \newacronym{label}[acronym]{written out form}
-%% To refer to them in the text use \gls{label}
-\usepackage[acronym,toc]{glossaries}
-\makeglossaries
-
-\author{Kathryn D. Huff
-\\ \href{mailto:khuff@anl.gov}{\texttt{khuff@anl.gov}}
-\\ 9700 S. Cass Ave
+\author{Kathryn D. Huff$^{*}$
+\\ $^*$ Argonne National Laboratory, 9700 S. Cass Ave, Argonne, IL. khuff@anl.gov
 }
 
 \date{}
 
 % concise yet adequately descriptive title
-\title{Hydrologic Nuclide Transport Models in Cyder, A Geologic Disposal Software Library}
+\title{Hydrologic Nuclide Transport Models in Cyder, A Geologic Disposal Software Library - 13328}
 \begin{document}
 \maketitle
-
-\input{acros}
 
 
 % 1) a descriptive title that will reflect the paper 
@@ -143,8 +131,9 @@ simulation speed required by the Cyclus fuel cycle simulator.
 
 The interfaces between the models are essential to the understanding of the 
 models themselves. The interfaces define boundary conditions in a number of 
-forms based on information available internally to the component implementation. 
-\input{interfaces/interfaces}
+forms based on information available internally to the component implementation.  
+
+\input{./interfaces/interfaces}
 
 \section*{DESCRIPTION OF THE MODELS}
 
