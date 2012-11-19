@@ -12,13 +12,9 @@ the primary kind of boundary condition used at the source for this model.
 
 The conceptual model in Figure \ref{fig:1dinf} represents solute transport
 in one dimension with unidirectional flow and a semi-infinite boundary condition 
-in the positive flow direction. 
+in the positive flow direction. The solution is given (Leij and van Genuchten, 
+\cite{leij_analytical_1991}) and described below.
 
-The solution is given (Leij and van Genuchten, \cite{leij_analytical_1991})  as :
-\begin{align}
-  \end{align}
-
-\vspace{1cm}
 \begin{figure}[htbp!]
   \begin{center}
     \def\svgwidth{.5\textwidth}
@@ -44,7 +40,7 @@ With the boundary conditions
   + \frac{1}{2} \left(\frac{v_x^2t}{\pi D_L}\right)^{1/2}e^{\frac{-( L - 
   v_xt)^2}{4D_Lt}}\nonumber\\
   &- \frac{1}{2}\left( 
-  1+\frac{v_xL}{D_L}+\frac{v_x^2t}{D_L}\right)e^\frac{v_xL}{D_L}\erfc{\left[\frac{L-V_xt}{2\sqrt{D_Lt}}\right]} 
+  1+\frac{v_xL}{D_L}+\frac{v_x^2t}{D_L}\right)e^\frac{v_xL}{D_L}\erfc{\left[\frac{L-V_xt}{2\sqrt{D_Lt}}\right]}.
   \Bigg]
 \end{align}
 

@@ -2,12 +2,12 @@ The interfaces between the models are essential to the understanding of the
 models themselves. The interfaces define boundary conditions in a number of 
 forms based on information available internally to the component. 
 
-It is customary to define the combination of molecular diffusion and mechanical
+In a saturated, reducing environment, contaminants are transported by 
+dispersion and advection. It is customary to define the combination 
+of molecular diffusion and mechanical
 mixing as the dispersion tensor, $D$, such that the mass conservation equation 
-becomes:
+becomes \cite{schwartz_fundamentals_2003, wang_introduction_1982, van_genuchten_analytical_1982}:
 
-  In a saturated, reducing environment, contaminants are transported by 
-  dispersion and advection,  
     \begin{align}
       J &= J_{dis} + J_{adv}\nonumber\\
       &= -n(D_{mdis} + \tau D_m)\nabla C + nvC\nonumber\\ 

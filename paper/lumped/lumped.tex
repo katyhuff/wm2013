@@ -1,13 +1,10 @@
 \subsection*{Lumped Parameter Radionuclide Model}\label{sec:lumped}
 
 The response function model implemented interchangeable piston flow, 
-exponential, and dispersion response functions. The paramters used to describe 
-these response functions were developed by direct 
-calibration against the results of the abstraction effort.  
-
+exponential, and dispersion response functions \cite{maloszewski_lumped_1996}.
 For systems in which the flow can be assumed constant, it is possible to model a 
-system of volumes as a connected lumped paramter models (Figure 
-\ref{fig:lumpedseries}). 
+system of volumes as a connected lumped parameter models (Figure 
+\ref{fig:lumpedseries}).
 
 
 \begin{figure}[htbp!]
@@ -33,7 +30,7 @@ concentration, $C_{out}(t)$, \begin{align}
   t-t'  &= \mbox{ transit time }[s]\nonumber\\
   g(t-t')  &= \mbox{ response function, a.k.a. transit time 
   distribution}[-]\nonumber]\\
-  \lambda &= \mbox{ radioactive decay constant, 1 to neglect}[s^{-1}]
+  \lambda &= \mbox{ radioactive decay constant, 1 to neglect}[s^{-1}].\nonumber
 \end{align}
 
 Selection of the response function is usually based on experimental tracer 
@@ -63,9 +60,7 @@ engineering applications include the Piston Flow Model (PFM), \begin{align}
 \end{align}
 The latter of these, the Dispersion Model satisfies the one dimensional 
 advection-dispersion equation, and is therefore the most physically relevant for 
-this application. 
-
-The solutions to these for constant concentration at the source boundary give
+this application. The solutions to these for constant concentration at the source boundary give
 \begin{align}
   C(t) &=\begin{cases}
     PFM & C_0e^{\lambda t_t}\\
