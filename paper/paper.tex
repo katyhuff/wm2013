@@ -3,6 +3,7 @@
 %
 \documentclass[letterpaper]{article}
 \usepackage[top=1.0in,bottom=1.0in,left=1.0in,right=1.0in]{geometry}
+\usepackage{times}
 \usepackage{verbatim}
 \usepackage{amssymb}
 \usepackage{graphicx}
@@ -114,10 +115,9 @@ natural and engineered barrier components of generic geology repository
 concepts. A proof of principle demonstration was also conducted in which these models 
 were used to represent the natural and engineered barrier components of a 
 repository concept in a reducing, homogenous, generic geology. 
-This base case demonstration, the Cyder open source library integrates with the Cyclus 
-computational fuel cycle systems analysis platform in order to calculate 
-repository performance metrics with respect to a canonical once through fuel 
-cycle.  
+This base case demonstrates integration of the Cyder open source library with the Cyclus 
+computational fuel cycle systems analysis platform to facilitate calculation of
+repository performance metrics with respect to fuel cycle choices.
 
 \section*{INTRODUCTION}
 % Provide a summary of the work conducted:
@@ -145,24 +145,16 @@ simulation speed required by the Cyclus fuel cycle simulator.
 
 The interfaces between the models are essential to the understanding of the 
 models themselves. The interfaces define boundary conditions in a number of 
-forms based on information available internally to the component. 
+forms based on information available internally to the component implementation. 
 \input{interfaces/interfaces}
 
 \section*{DESCRIPTION OF THE MODELS}
 
 The results of this work consist of four models that are the product of an 
-abstraction effort with more detailed tools. Results of unit tests and 
-benchmarking efforts will be described as will a proof of principle base case 
-demonstration of the use of these models. The base case demonstration has used 
-one of these models to represent nuclide transport through 
-waste form, waste package, and buffer components in 
-a generic, isotropic, permeable porous geological medium with 
-reducing geochemistry as well as 
-the near field.
-
-The analytic models modified by abstraction and implemented in Cyder include a 
-degradation rate model, a mixed cell model, a response function model, and a 
-one-dimensional solution (Leij and Van Genuchten) to the advection-dispersion equation.
+abstraction effort with more detailed tools.  The analytic models modified by 
+abstraction and implemented in Cyder include a degradation rate model, a mixed 
+cell model, a response function model, and a one-dimensional solution (Leij and 
+Van Genuchten) to the advection-dispersion equation.
 
 \input{deg_rate/deg_rate}
 
@@ -173,7 +165,7 @@ one-dimensional solution (Leij and Van Genuchten) to the advection-dispersion eq
 \input{one_dim_ppm/one_dim_ppm}
 
 
-\section*{BASE CASE DEMONSTRATION}
+\section*{DISCUSSION OF THE BASE CASE DEMONSTRATION}
 \input{base_case/base_case}
 
 \section*{CONCLUDING REMARKS}

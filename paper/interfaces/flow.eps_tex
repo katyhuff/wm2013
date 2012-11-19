@@ -63,7 +63,7 @@
     \put(0.60349357,0.39437909){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Source Term:}}}%
     \put(0.60349357,0.30147024){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dirichlet:}}}%
     \put(0.60349357,0.08468294){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$-nD\frac{\partial C}{\partial x}\Big|_{r_{wp}} + nv_xC(r_{wp})$}}}%
-    \put(0.60349357,0.18275338){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\frac{\partial C}{\partial r}$}}}%
+    \put(0.60349357,0.18275338){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\frac{\partial C}{\partial r}\Big|_{r_{wp}}$}}}%
     \put(0.60349357,0.36857108){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\dot{m}_{wp}$}}}%
     \put(0.02797489,0.36857108){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\dot{m}_{wf}$}}}%
     \put(0.02797489,0.27566223){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$C(r_{wf},t)$}}}%
