@@ -6,106 +6,84 @@ It is customary to define the combination of molecular diffusion and mechanical
 mixing as the dispersion tensor, $D$, such that the mass conservation equation 
 becomes:
 
-\begin{align}
-  \nabla \left( nD\nabla C \right) - \nabla \left( nv \right) &= 
-  \frac{\partial(nC)}{\partial t}
-  \label{massbal} \intertext{Adding sorption, by accounting for a change in mass 
-  storage,}
-  \nabla \left( nD\nabla C \right) - \nabla \left( nv \right)  &= 
-  \frac{\partial(nC)}{\partial t}  + \frac{\partial(s\rho_b)}{\partial t} 
-  \label{withsorption} \intertext{where}
-  s &= \mbox{sorbed phase concentration}\nonumber\\
-  \rho_b &= \mbox{ bulk (dry) density }[kg/m^3].\nonumber
-\end{align}
+  In a saturated, reducing environment, contaminants are transported by 
+  dispersion and advection,  
+    \begin{align}
+      J &= J_{dis} + J_{adv}\nonumber\\
+      &= -n(D_{mdis} + \tau D_m)\nabla C + nvC\nonumber\\ 
+      &= -nD\nabla C + nvC \nonumber\\ 
+      \intertext{which is, for uniform flow}
+      &=\left(-nD_{xx} \frac{\partial C}{\partial x}
+             + nv_xC \right)\hat{\imath}
+             + \left( -nD_{yy} \frac{\partial C}{\partial y}
+            \right)\hat{\jmath}
+            + \left( -nD_{zz} \frac{\partial C}{\partial z}
+            \right)\hat{k},
+      \label{unidirflow}
+      \intertext{where}
+      J_{dif} &= \mbox{ Total Dispersive Mass Flux }[kg/m^2/s]\nonumber\\
+      J_{adv} &= \mbox{ Advective Mass Flux }[kg/m^2/s]\nonumber\\
+      \tau &= \mbox{ Toruosity }[-] \nonumber\\
+      n &= \mbox{ Porosity }[\%] \nonumber\\
+      D_m &= \mbox{ Molecular diffusion coefficient }[m^2/s]\nonumber\\
+      D_{mdis} &= \mbox{ Coefficient of mechanical dispersivity}[m^2/s]\nonumber\\
+      D &= \mbox{ Effective Dispersion Coefficient }[m^2/s]\nonumber\\
+      C &= \mbox{ Concentration }[kg/m^3].\\
+    \end{align}
 
-If it is assumed that sorption can be approximated as a linear isotherm, 
-reversible reaction,
+Solutions to this equation can be categorized by their boundary conditions and 
+those boundary conditions serve as the interfaces between components in the 
+Cyder library of nuclide transport models.
 
-\begin{align}
-  \nabla \left( nD\nabla C \right) - \nabla \left( nv \right)  &= 
-  \frac{\partial(nC)}{\partial t}  + \frac{\partial(s\rho_b)}{\partial t} 
-  \label{linisomasstrans}
-  \intertext{where}
-  K_d &= \mbox{species distribution coefficient.}\nonumber\\
-\end{align}
+  \begin{figure}[htp!]
+    \begin{center}
+      \def\svgwidth{\textwidth}
+      \input{interfaces/flow.eps_tex}
+    \end{center}
+    \caption{The boundaries between components (in this case, waste form and 
+      waste package components) are robust interfaces defined by 
+    Source Term, Dirichlet, Neumann, and Cauchy boundary conditions.}
+    \label{fig:flow}
+  \end{figure}
 
-This becomes 
-
-\begin{align}
-  \nabla \left( nD\nabla C \right) - \nabla \left( nv \right)  &= 
-  \frac{\partial(nC)}{\partial t}  + \frac{\partial(K_dC\rho_b)}{\partial t} 
-  \intertext{which, rearranged, gives}
-  \nabla \left( nD\nabla C \right) - \nabla \left( nv \right)  &= 
-  \frac{\partial}{\partial t}\left(nC + K_dC\rho_b\right)\\
-  \nabla \left( nD\nabla C \right) - \nabla \left( nv \right)  &= 
-  \frac{\partial}{\partial t}\left(nC\left(1 + 
-  \frac{K_d\rho_b}{n}\right)\right).
-  \label{sorptionrearranged}
-\end{align}
-
-In equations \eqref{sorptionrearranged} it is clear that the storage term can be 
-simplified with a retardation factor, such that if
-
-\begin{align}
-  R_f &= \mbox{retardation factor}\\
-  &= 1+\frac{\rho_bK_d}{n}\\
-  \intertext{then equation \eqref{sorption rearranged} can be written}
-  \nabla \left( nD\nabla C \right) - \nabla \left( nv \right) &= 
-  R_f\frac{\partial(nC)}{\partial t}    \label{withlinsorption}
-\end{align}
-
-For uniform flow, the dispersion tensor, $D$, in equation \ref{uniflow} gives
-
-\begin{align}
-  D_x \frac{\partial^2 C}{\partial x^2} +
-  D_y \frac{\partial^2 C}{\partial y^2} +
-  D_z \frac{\partial^2 C}{\partial z^2} +
-  v_x \frac{\partial C}{\partial x}  = R_f \frac{\partial C}{\partial t}.  
-  \label{unidirflow}
-\end{align}
-
-A special case of uniform flow, no flow, simplifies to the diffusion equation,
-\begin{align}
-  D_x \frac{\partial^2 C}{\partial x^2} +
-  D_y \frac{\partial^2 C}{\partial y^2} +
-  D_z \frac{\partial^2 C}{\partial z^2}  = R_f \frac{\partial C}{\partial t} .
-  \label{diffusion}
-\end{align}
-
-Solutions to these equations can be categorized by their boundary conditions.  
-The first, specified-head or Dirichlet type boundary conditions define a specified species 
+In addition to a specified source term (the zeroeth type boundary condition, 
+perhaps), the first, specified-head or Dirichlet type boundary conditions define a specified species 
 concentration on some section of the boundary of the representative volume, 
 
-\begin{align}
-  C(x,y,z,t) = C_0(x,y,z,t)\hspace{1mm}\mbox{ for } \left( x,y,z \right) \in 
-  \Gamma.
-\end{align}
+    \begin{align}
+      C(\vec{r},t) = C_0(\vec{r},t)\hspace{1mm}\mbox{ for } \left( \vec{r} \right) \in 
+      \Gamma.
+    \end{align}
 
 The second type, specified-flow or Neumann type boundary conditions describe a full set of 
 concentration gradients at the boundary of the domain
 
-\begin{align}
-  \frac{\partial C(\vec{r},t)}{\partial r} &= nD\vec{J} \hspace{1mm}\mbox{ for } 
-  \vec{r} \in \Gamma.
-  \intertext{where}
-  \vec{r} &= \mbox{ position vector }\nonumber\\
-  \Gamma &= \mbox{ domain boundary }\nonumber\\
-  \vec{J} &= \mbox{ solute mass flux } [kg/m^2\cdot s].\nonumber
-\end{align}
+    \begin{align}
+      \frac{\partial C(\vec{r},t)}{\partial r} &= nD\vec{J}(t) \hspace{1mm}\mbox{ for } 
+      \vec{r} \in \Gamma
+      \intertext{where}
+      \vec{r} &= \mbox{ position vector }\nonumber\\
+      \Gamma &= \mbox{ domain boundary }\nonumber\\
+      \vec{J}(t) &= \mbox{ solute mass flux } [kg/m^2\cdot s].\nonumber
+    \end{align}
+    
 
 The third, head-dependent mixed boundary condition or Cauchy type, defines a solute 
 flux along a boundary,
 
-\begin{align}
-  vC(X,y,z,t) - D_x \frac{\partial C(x,y,z,t}{\partial x} &= 
-  vg(x,y,z,t)\hspace{1mm}\mbox{ for } \left( x,y,z \right) \in \Gamma
-  \intertext{where}
-  g(x,y,z,t) &= \mbox{ arbirary flux profile}
-  \intertext{this can also be written}
-  -nD_{ij}\frac{\partial C}{\partial x_j}\hat{i} + q_iC\hat{i} &= q_iC_0\hat{i}.
-  \intertext{where}
-  D_{i,j} &= \hat{i}\mbox{ component of the } [m^2/s]\nonumber\\
-  q_i\hat{i} &= \mbox{outward fluid flux} [m/s]\nonumber\\
-  \hat{i} &= \mbox{unit vector normal to the surface} [-]\nonumber\\
-  C_0 &= \mbox{concentration of the fluid at the boundary} [kg/m^3]\nonumber\\
-\end{align}
+    \begin{align}
+      -D\frac{\partial C}{\partial x} + v_xC &= v_xC(\vec{r},t)
+      \intertext{where}
+      D &= \mbox{ hydrodynamic dispersion coefficient } [m^2/s]\nonumber\\
+      v_x &= \mbox{ outward fluid flux} [m/s].\nonumber
+    \end{align}  
+
+The spatial concentration throughout the volume is sufficient to fully describe 
+implementation of the following nuclide transport models within Cyder. This is 
+supported by the implementation in which vertical advective velocity is uniform 
+throughout the system and in which parameters such as the dispersion coefficient 
+are known for each component. Since this is the case in Cyder, description of 
+the Dirichlet condition is sufficient to fully define calculation of the Neumann 
+and Cauchy type conditions.
+
+

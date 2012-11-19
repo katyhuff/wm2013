@@ -114,9 +114,10 @@ natural and engineered barrier components of generic geology repository
 concepts. A proof of principle demonstration was also conducted in which these models 
 were used to represent the natural and engineered barrier components of a 
 repository concept in a reducing, homogenous, generic geology. 
-In this demonstration, the Cyder open source library integrates with the Cyclus 
+This base case demonstration, the Cyder open source library integrates with the Cyclus 
 computational fuel cycle systems analysis platform in order to calculate 
-repository performance metrics with respect to candidate fuel cycle options.  
+repository performance metrics with respect to a canonical once through fuel 
+cycle.  
 
 \section*{INTRODUCTION}
 % Provide a summary of the work conducted:
@@ -140,15 +141,23 @@ repository behaviors so that abstracted models can be robustly and flexibly
 implemented in the Cyder disposal environment library without sacrificing the 
 simulation speed required by the Cyclus fuel cycle simulator.
 
+\section*{MODEL INTERFACES}
+
+The interfaces between the models are essential to the understanding of the 
+models themselves. The interfaces define boundary conditions in a number of 
+forms based on information available internally to the component. 
+\input{interfaces/interfaces}
 
 \section*{DESCRIPTION OF THE MODELS}
 
 The results of this work consist of four models that are the product of an 
 abstraction effort with more detailed tools. Results of unit tests and 
 benchmarking efforts will be described as will a proof of principle base case 
-demonstration of the use of these models. The base case demonstration has used these 
-models to represent a generic, isotropic, permeable porous geological medium with 
-reducing geochemistry as well as waste form, waste package, and buffer models in 
+demonstration of the use of these models. The base case demonstration has used 
+one of these models to represent nuclide transport through 
+waste form, waste package, and buffer components in 
+a generic, isotropic, permeable porous geological medium with 
+reducing geochemistry as well as 
 the near field.
 
 The analytic models modified by abstraction and implemented in Cyder include a 
@@ -163,32 +172,11 @@ one-dimensional solution (Leij and Van Genuchten) to the advection-dispersion eq
 
 \input{one_dim_ppm/one_dim_ppm}
 
-\section*{MODEL INTERFACES}
-
-The interfaces between the models are essential to the understanding of the 
-models themselves. The interfaces define boundary conditions in a number of 
-forms based on information available internally to the component. 
-\input{interfaces/interfaces}
 
 \section*{BASE CASE DEMONSTRATION}
+\input{base_case/base_case}
 
-A base case simulation was conducted as a proof of principle demonstration of 
-the modularity and interchangeability of these models. The simplest of the contaminant 
-transport models was used to represent the natural and engineered barrier 
-components of a repository concept. This concept consisted of a  saturated clay environment.  In 
-this demonstration, the Cyder open source library integrates with the Cyclus 
-computational fuel cycle systems analysis platform in order to calculate 
-repository performance metrics with respect to candidate fuel cycle options.  
-Thus, the demonstration illuminates the suitability of Cyder's interface for 
-linking to other tools as well as for use as a stand-alone radionuclide 
-transport calculation engine.
-
-\section*{RESULTS}
-% Provide your results:
-%       clearly
-
-\section{Importance to Others}
-
+\section*{CONCLUDING REMARKS}
 The Cyder source code in which these models are implemented as well as 
 associated documentation are freely available to interested researchers and 
 potential model developers. The application programming interface to this 
@@ -202,6 +190,9 @@ nuclide transport library, by virtue of its capability to modularly integrate
 with the Cyclus fuel cycle simulator has laid the foundation for integrated 
 disposal option analysis in the context of fuel cycle options. 
 
+
+\bibliographystyle{plain}
+\bibliography{paper}
 \end{document}
 
 

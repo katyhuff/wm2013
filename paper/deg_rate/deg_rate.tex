@@ -4,16 +4,13 @@ material containment properties, is the simplest of implemented models and is mo
 appropriate for simplistic waste package failure modeling. 
 
 The materials that constitute the engineered and natural barriers in a saturated 
-repository environment degrade over time. One abstract model of the nuclide 
-release behavior can be based solely on a fractional degradation rate. This 
+repository environment degrade over time. The implemented model of this nuclide 
+release behavior is based solely on a fractional degradation rate. This 
 model incorporates and source term made available on the inner boundary into its 
 available mass and defines the resulting boundary conditions at the outer boundary 
 as solely a function of the degradation rate of that component.
 
-For the case in which all engineered barrier components are represented by 
-degradation rate models, the source term at the outermost edge will be solely
-a function of the original central source and the degradation rates of the 
-components. This results in the following expression for the mass transfer, 
+This results in the following expression for the mass transfer, 
 $m_{ij}(t)$, from cell $i$ to cell $j$ at time $t$ :
 
 \begin{align}
@@ -51,6 +48,10 @@ C_{ij}^n &= \frac{m_i^n}{V_{vi}}
 &= \frac{\mbox{ solute mass in cell i }}{\mbox{ void volume in cell i}}.\nonumber 
 \end{align}
 
+For the case in which all engineered barrier components are represented by 
+degradation rate models, the source term at the outermost edge will be solely
+a function of the original central source and the degradation rates of the 
+components. 
 
 To support parent components that utilize the Cauchy boundary condition, the 
 degradation model assumes that the fluid velocity is constant across the cell 

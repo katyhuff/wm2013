@@ -20,7 +20,7 @@ A graphical representation of the mixed cell model is given in Figures
     \includegraphics[height=7cm]{mixed_cell/mixed_cell_whole.eps}
   \end{center}
   \caption[Intact Mixed Cell Control Volume]{The control volume contains an 
-  intact material matrix and contaminants that are unavailable to neighboring 
+  intact material matrix. Contaminants are unavailable to neighboring 
   subcomponents until dissolution has begun.}
   \label{fig:intact}
 \end{minipage}
@@ -30,7 +30,7 @@ A graphical representation of the mixed cell model is given in Figures
     \includegraphics[height=7cm]{mixed_cell/mixed_cell_degraded.eps}
   \end{center}
   \caption[Degrading Mixed Cell Control Volume]{Once dissolution begins, the 
-  :control volume contains a partially dissolved material matrix, contaminated 
+  control volume contains a partially dissolved material matrix, contaminated 
   pore water, and precipitated solids.}
   \label{fig:dissolved}
 \end{minipage}
@@ -76,20 +76,17 @@ m_{im}(t_n) &= C_0 V_{im}(t_n)\nonumber\\
 \end{align}
 
 The contaminant mass in the free fluid is just the pore water concentration 
-times the free fluid volume plus the time integral of net influx to the cell. 
+times the free fluid volume plus the time integral of net influx to the cell, 
 
 \begin{align}
 C_{ffT}(t_n) &= \left[C_0 + \frac{\int_{t_0}^{t_n} \dot{m}_{i}(t') dt'}{V_{ff}(t_n)}\right] 
 \intertext{and}
 m_{ffT}(t_n) &= C_{ff}(t_n)\theta V_{ff}(t_n)\nonumber\\
        &= \left[C_0 + \frac{\int_{t_0}^{t_n} \dot{m}_{i}(t') dt'}{V_{ff}(t_n)}\right] V_{ff}(t_n) \nonumber\\
-       &= C_0V_{ff}(t_n) + \int_{t_0}^{t_n} \dot{m}_{i} dt'
+       &= C_0V_{ff}(t_n) + \int_{t_0}^{t_n} \dot{m}_{i} dt'.
 \end{align}
 
 It is limited, however, by both solubility limitation and sorption. 
-
-\subsubsection*{Solubility}
-
 
 \subsubsection*{Sorption}
 
@@ -113,6 +110,25 @@ intact matrix, the contaminant mass is distributed between the pore walls and
 the pore fluid by sorption.  So too, contaminant mass released from the intact 
 matrix by degradation is distributed between dissolved mass in the free fluid 
 and sorbed mass in the precipitated solids.
+
+\subsubsection*{Solubility}
+  In addition to engineered barriers, their movement is constrained by 
+  the solubility limit, 
+    \begin{align}
+      m_i &\leq V_w C_{sol,i},
+    \intertext{and sorption,}
+      S &=\frac{V_w(C_0 -C)}{m_s}
+    \intertext{where}
+      m_i &= \mbox{ mass of isotope i in volume }V_w [kg]\nonumber\\ 
+      V_w &= \mbox{ volume of the solution }[m^3]\nonumber\\
+      C_{sol,i} &= \mbox{ solubility limit, the maximum concentration of i }[kg_m^3]\nonumber\\
+      S &= \mbox{ mass sorbed on the surface }[kg/kg]\nonumber\\
+      C_0 &= \mbox{ initial concentration in the solution }[kg_m^3]\nonumber\\
+      C &= \mbox{ equilibrium concentration in the solution }[kg/m^3]\nonumber\\
+      m_s &= \mbox{ sediment mass }[kg].\nonumber
+    \end{align}
+    The function $S(C)$ is called a sorption isotherm. 
+
 
 To solve for the boundary condiitons in this model, the amount of dissolved mass 
 in the free fluid must be found. This value, $m_{ffl}$, can be expressed in terms of the 
@@ -191,14 +207,7 @@ C(x,y,z,t) = \frac{m_{ffl}(t)}{V_{ff}(t)}\forall (x,y,x) \in \Gamma.
 \label{dirichlet_mixed}
 \end{align}
 
-Again, no concentration gradient can be specified across the boundary, so the 
-Neumann condition is 
-\begin{align}
-\frac{\partial C}{\partial r} &= 0
-\label{neumann_mixed}
-\intertext{such that}
-\theta_i\vec{v_i}(t) C(x,y,z,t) &= \theta_i\vec{v_i}(t) C(x,y,,z,t)
-\end{align}
-
+From this boundary condition in combination with global advective velocity 
+data, other boundary conditions can be found. 
 
 
