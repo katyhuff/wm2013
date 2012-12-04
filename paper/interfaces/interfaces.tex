@@ -1,6 +1,6 @@
 The interfaces between the models are essential to the understanding of the 
 models themselves. The interfaces define boundary conditions in a number of 
-forms based on information available internally to the component. 
+forms based on information available internally to the component implementation. 
 
 In a saturated, reducing environment, contaminants are transported by 
 dispersion and advection. It is customary to define the combination 
@@ -40,23 +40,23 @@ Cyder library of nuclide transport models.
       \def\svgwidth{\textwidth}
       \input{./interfaces/flow.eps_tex}
     \end{center}
-    \caption{The boundaries between components (in this case, waste form and 
-      waste package components) are robust interfaces defined by 
+    \caption{The boundaries between components (in this case, waste form (wf) and 
+      waste package (wp) components) are robust interfaces defined by 
     Source Term, Dirichlet, Neumann, and Cauchy boundary conditions.}
     \label{fig:flow}
   \end{figure}
 
-In addition to a specified source term (the zeroeth type boundary condition, 
+In addition to a specified source term (the zeroth type boundary condition, 
 perhaps), the first, specified-head or Dirichlet type boundary conditions define a specified species 
 concentration on some section of the boundary of the representative volume, 
 
     \begin{align}
-      C(\vec{r},t) = C_0(\vec{r},t)\hspace{1mm}\mbox{ for } \left( \vec{r} \right) \in 
+      C(\vec{r},t) = C_0(\vec{r},t)\hspace{1mm}\mbox{ for } \vec{r} \in 
       \Gamma.
     \end{align}
 
 The second type, specified-flow or Neumann type boundary conditions describe a full set of 
-concentration gradients at the boundary of the domain
+concentration gradients at the boundary of the domain,
 
     \begin{align}
       \frac{\partial C(\vec{r},t)}{\partial r} &= nD\vec{J}(t) \hspace{1mm}\mbox{ for } 
@@ -72,7 +72,8 @@ The third, head-dependent mixed boundary condition or Cauchy type, defines a sol
 flux along a boundary,
 
     \begin{align}
-      -D\frac{\partial C}{\partial x} + v_xC &= v_xC(\vec{r},t)
+      -D\frac{\partial C}{\partial x} + v_xC &= v_xC(\vec{r},t) 
+      \hspace{1mm}\mbox{ for }\vec{r} \in \Gamma
       \intertext{where}
       D &= \mbox{ hydrodynamic dispersion coefficient } [m^2/s]\nonumber\\
       v_x &= \mbox{ outward fluid flux} [m/s].\nonumber

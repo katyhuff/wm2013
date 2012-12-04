@@ -6,7 +6,7 @@ appropriate for simplistic waste package failure modeling.
 The materials that constitute the engineered and natural barriers in a saturated 
 repository environment degrade over time. The implemented model of this nuclide 
 release behavior is based solely on a fractional degradation rate. This 
-model incorporates and source term made available on the inner boundary into its 
+model incorporates the source term made available on the inner boundary into its 
 available mass and defines the resulting boundary conditions at the outer boundary 
 as solely a function of the degradation rate of that component.
 
@@ -18,7 +18,7 @@ $m_{ij}(t)$, from cell $i$ to cell $j$ at time $t$ :
 \label{deg_rate_source_cont}
 \intertext{where}
 \dot{m}_{ij} &= \mbox{ the rate of mass transfer from i to j }[kg/s]\nonumber\\
-f_i &= \mbox{ fractional degradation rate }[1/s] \nonumber\\
+f_i &= \mbox{ fractional degradation rate in cell i }[1/s] \nonumber\\
 m_i &= \mbox{ mass in cell i }[kg] \nonumber\\
 t &= \mbox{ time  }[s].\nonumber
 \end{align}

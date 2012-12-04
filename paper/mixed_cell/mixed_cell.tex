@@ -43,13 +43,13 @@ V_{ff}(t_n) &= \theta V_T \int_{t_0}^{t_n} f(\cdots) dt.
 \label{vff}
 \end{align}
 
-The volume of the intact matrix can be expressed
+The volume of the intact matrix can be expressed as
 \begin{align}
 V_{im}(t_n) &= V_T - V_T\int_{t_0}^{t_n} f(\cdots) dt.
 \label{vim}
 \end{align}
 
-Finally, the volume of the precipitated solids can be expressed
+Finally, the volume of the precipitated solids can be expressed as
 \begin{align}
 V_{ps}(t_n) &= (1 - \theta)V_T\int_{t_0}^{t_n} f(\cdots) dt.
 \label{vps}
@@ -57,7 +57,7 @@ V_{ps}(t_n) &= (1 - \theta)V_T\int_{t_0}^{t_n} f(\cdots) dt.
 
 This model assumes that all net influx to the cell enters the free fluid rather 
 than the intact matrix. The total volumetric contaminant concentration in the intact matrix, 
-can be expressed
+can be expressed as
 
 \begin{align}
 C_{im}(t_n) &= C_0\\
@@ -76,7 +76,8 @@ m_{im}(t_n) &= C_0 V_{im}(t_n)\nonumber\\
 \end{align}
 
 The contaminant mass in the free fluid is just the pore water concentration 
-times the free fluid volume plus the time integral of net influx to the cell, 
+times the free fluid volume plus the time integral of net influx to the cell
+such that
 
 \begin{align}
 C_{ffT}(t_n) &= \left[C_0 + \frac{\int_{t_0}^{t_n} \dot{m}_{i}(t') dt'}{V_{ff}(t_n)}\right] 
@@ -91,7 +92,7 @@ It is limited, however, by both solubility limitation and sorption.
 \subsubsection*{Sorption}
 
 The mass in both the free fluid and in the intact matrix exists in both 
-sorbed and nonsorbed phases. The relationship between the sorbed mass 
+sorbed and non-sorbed phases. The relationship between the sorbed mass 
 concentration in the solid phase (e.g. the pore walls),
 
 \begin{align}
@@ -123,7 +124,8 @@ and sorbed mass in the precipitated solids.
     \end{align}
 
 
-To solve for the boundary condiitons in this model, the amount of dissolved mass 
+To solve for the boundary condiitons in this model, the amount of solubility 
+limited dissolved mass 
 in the free fluid must be found. This value, $m_{ffl}$, can be expressed in terms of the 
 total degraded contaminant mass and the contaminant mass in the precipitated 
 solid,
@@ -140,7 +142,7 @@ s_{i} &= K_{di} c_{i}
 \label{linear_iso}
 \intertext{where}
 s_i &= \mbox{ the solid concentration of isotope i }[kg/kg]\nonumber\\
-K_{di} &= \mbox{ the distribution coefficient of isotope i}[kg/kg]\nonumber\\
+K_{di} &= \mbox{ the distribution coefficient of isotope i}[m^3/kg]\nonumber\\
 c_i &= \mbox{ the liquid concentration of isotope i }[kg/m^3].\nonumber
 \end{align}
 
