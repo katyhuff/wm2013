@@ -36,6 +36,9 @@ urlcolor = Blue
 \newcommand*{\TitleFont}{%
       \fontsize{11}{13}%
       \selectfont}
+% So that the section font is not bigger than 12pt
+\usepackage{titlesec}
+\titleformat{\section}{\fontsize{11}{13}\bfseries}{\thesection}{1em}{}
 
 % No paragraph indentation
 \setlength{\parindent}{0pt}
