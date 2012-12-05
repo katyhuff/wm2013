@@ -20,6 +20,14 @@ urlcolor = Blue
 \def\thesection       {\arabic{section}}
 \def\thesubsection     {\thesection.\alph{subsection}}
 \newcommand{\Cyclus}{\textsc{Cyclus}}
+% For WMSym (Eqn. #) requirement
+\renewcommand{\theequation}{Eqn. \arabic{equation}}
+% For the header 
+\usepackage{fancyhdr}
+\setlength{\headheigh}{15.2pt}
+\pagestyle{fancy}
+\lhead{WM2013 Conference, February 24-28, 2013, Phoenix, Arizona, USA}
+\renewcommand{\headrulewidth}{0pt}
 
 \author{Kathryn D. Huff$^{*}$
 \\ $^*$ Argonne National Laboratory, 9700 S. Cass Ave, Argonne, IL. khuff@anl.gov
