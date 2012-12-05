@@ -33,7 +33,11 @@ urlcolor = Blue
 \usepackage{titling}
 \setlength{\droptitle}{-0.75in}
 % So that the title font is not bigger than 12pt
+\newcommand*{\AuthorFont}{%
+      \fontsize{11}{13}%
+      \selectfont}
 \newcommand*{\TitleFont}{%
+      \usefont{\encodingdefault}{\rmdefault}{b}{n}%
       \fontsize{11}{13}%
       \selectfont}
 % So that the section font is not bigger than 12pt
@@ -43,8 +47,8 @@ urlcolor = Blue
 % No paragraph indentation
 \setlength{\parindent}{0pt}
 
-\author{\TitleFont Kathryn D. Huff
-\\\TitleFont Argonne National Laboratory, 9700 S. Cass Ave, Argonne, IL. khuff@anl.gov
+\author{\AuthorFont Kathryn D. Huff
+\\\AuthorFont Argonne National Laboratory, 9700 S. Cass Ave, Argonne, IL. khuff@anl.gov
 }
 
 \date{}
@@ -191,7 +195,7 @@ with the Cyclus fuel cycle simulator has laid the foundation for integrated
 disposal option analysis in the context of fuel cycle options. 
 
 
-\bibliographystyle{plain}
+\bibliographystyle{ieeetr}
 \bibliography{paper}
 \end{document}
 
