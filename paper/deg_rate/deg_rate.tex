@@ -23,10 +23,10 @@ m_i &= \mbox{ mass in cell i }[kg] \nonumber\\
 t &= \mbox{ time  }[s].\nonumber
 \end{align}
 
-For a situation as in \Cyclus, with discrete timesteps, we can assume the 
-timesteps are small enough to assume a constant rate $m_{ij}$ over the course of 
-the timestep. Equation \eqref{deg_rate_source_cont} is integrated over the timestep to give 
-the mass transferred per timestep
+For a situation as in \Cyclus, with discrete timesteps, the timesteps are 
+assumed to be small enough to assume a constant rate $m_{ij}$ over the course of 
+the timestep. The mass transfer rate \eqref{deg_rate_source_cont} is integrated 
+over the timestep to give the mass transferred per timestep
 
 \begin{align}
 m_{ij}^n &= \int_{t_{n-1}}^{t_n}\dot{m}_{ij}(t')dt' \nonumber

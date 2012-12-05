@@ -112,23 +112,11 @@ the pore fluid by sorption.  So too, contaminant mass released from the intact
 matrix by degradation is distributed between dissolved mass in the free fluid 
 and sorbed mass in the precipitated solids.
 
-\subsubsection*{Solubility}
-  In addition to engineered barriers, contaminant movement is constrained by 
-  the solubility limit \cite{hedin_integrated_2002}, 
-    \begin{align}
-      m_i &\leq V_w C_{sol,i},
-    \intertext{where}
-      m_i &= \mbox{ mass of isotope i in volume }V_w [kg]\nonumber\\ 
-      V_w &= \mbox{ volume of the solution }[m^3]\nonumber\\
-      C_{sol,i} &= \mbox{ solubility limit, the maximum concentration of i }[kg_m^3].\nonumber
-    \end{align}
 
-
-To solve for the boundary condiitons in this model, the amount of solubility 
-limited dissolved mass 
-in the free fluid must be found. This value, $m_{ffl}$, can be expressed in terms of the 
-total degraded contaminant mass and the contaminant mass in the precipitated 
-solid,
+To solve for the boundary condiitons in this model, the amount of non-sorbed 
+contaminant mass in the free fluid must be found. This value, $m_{ffl}$, can be 
+expressed in terms of the total degraded contaminant mass and the contaminant 
+mass in the precipitated solid,
 
 \begin{align}
 m_{ffl} &= m_{ffT} - m_{psc}.
@@ -183,7 +171,7 @@ m_{psc}   &= \frac{m_{ffT} - m_{psm} - \frac{V_{ff}}{K_d}}{2} \nonumber\\
 \label{m_psc}
 \end{align}
 
-If we plug Equation \eqref{m_psc} into Equation \eqref{m_ffl}, we arrive at the 
+Plugging \eqref{m_psc} into \eqref{m_ffl} results in the 
 following expression for $m_{ffl}$ in terms of known quantities
 
 \begin{align}
@@ -194,6 +182,19 @@ m_{ffl}   &= m_{ffT} - \frac{1}{2} \left(m_{ffT} - m_{psm} - \frac{V_{ff}}{K_d}\
 \label{m_ffl_full}
 \end{align}
 
+
+\subsubsection*{Solubility}
+  In addition to engineered barriers, contaminant movement is constrained by 
+  the solubility limit \cite{hedin_integrated_2002}, 
+    \begin{align}
+      m_{s,i} &\leq V_w C_{sol,i},
+    \intertext{where}
+      m_{s,i} &= \mbox{ solubility limited mass of isotope i in volume }V_w [kg]\nonumber\\ 
+      V_w &= \mbox{ volume of the solution }[m^3]\nonumber\\
+      C_{sol,i} &= \mbox{ solubility limit, the maximum concentration of i }[kg_m^3].\nonumber
+    \end{align}
+
+
 We can express the desired boundary conditions in terms of $m_{ffl}$. First, the 
 Dirichlet boundary condition is 
 \begin{align}
@@ -203,5 +204,3 @@ C(x,y,z,t) = \frac{m_{ffl}(t)}{V_{ff}(t)}\forall (x,y,x) \in \Gamma.
 
 From this boundary condition in combination with global advective velocity 
 data, other boundary conditions can be found. 
-
-
