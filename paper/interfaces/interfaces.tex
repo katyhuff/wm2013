@@ -12,12 +12,13 @@ becomes \cite{schwartz_fundamentals_2003, wang_introduction_1982, van_genuchten_
       J &= J_{dis} + J_{adv}\nonumber\\
       &= -n(D_{mdis} + \tau D_m)\nabla C + nvC\nonumber\\ 
       &= -nD\nabla C + nvC \nonumber\\ 
-      \intertext{which is, for uniform flow}
+      \intertext{which, for uniform flow in $\hat{k}$, is}
       &=\left(-nD_{xx} \frac{\partial C}{\partial x}
-             + nv_xC \right)\hat{\imath}
+             \right)\hat{\imath}
              + \left( -nD_{yy} \frac{\partial C}{\partial y}
             \right)\hat{\jmath}
             + \left( -nD_{zz} \frac{\partial C}{\partial z}
+             + nv_zC 
             \right)\hat{k},
       \label{unidirflow}
       \intertext{where}
@@ -28,7 +29,8 @@ becomes \cite{schwartz_fundamentals_2003, wang_introduction_1982, van_genuchten_
       D_m &= \mbox{ Molecular diffusion coefficient }[m^2/s]\nonumber\\
       D_{mdis} &= \mbox{ Coefficient of mechanical dispersivity}[m^2/s]\nonumber\\
       D &= \mbox{ Effective Dispersion Coefficient }[m^2/s]\nonumber\\
-      C &= \mbox{ Concentration }[kg/m^3].\nonumber
+      C &= \mbox{ Concentration }[kg/m^3]\nonumber\\
+      v &= \mbox{ Advective velocity. }[m/s].\nonumber
     \end{align}
 
 Solutions to this equation can be categorized by their boundary conditions and 
@@ -72,11 +74,11 @@ The third, head-dependent mixed boundary condition or Cauchy type, defines a sol
 flux along a boundary,
 
     \begin{align}
-      -D\frac{\partial C}{\partial x} + v_xC &= v_xC(\vec{r},t) 
+      -D\frac{\partial C}{\partial z} + v_zC &= v_zC(\vec{r},t) 
       \hspace{1mm}\mbox{ for }\vec{r} \in \Gamma
       \intertext{where}
       D &= \mbox{ hydrodynamic dispersion coefficient } [m^2/s]\nonumber\\
-      v_x &= \mbox{ outward fluid flux} [m/s].\nonumber
+      v_z &= \mbox{ outward (upward) fluid velocity} [m/s].\nonumber
     \end{align}  
 
 The spatial concentration throughout the volume is sufficient to fully describe 
