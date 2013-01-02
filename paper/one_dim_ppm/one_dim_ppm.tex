@@ -15,7 +15,7 @@ in one dimension with unidirectional flow and a semi-infinite boundary condition
 in the positive flow direction. The solution is given (Leij and van Genuchten, 
 \cite{leij_analytical_1991}) and described below.
 
-\begin{figure}[htbp!]
+\begin{figure}[h!]
   \begin{center}
     \def\svgwidth{.5\textwidth}
     \input{one_dim_ppm/1dinf.eps_tex}
@@ -27,20 +27,20 @@ in the positive flow direction. The solution is given (Leij and van Genuchten,
 
 For the boundary conditions, 
 \begin{align}
-  -D \frac{\partial C}{\partial x}\big|_{x=0} + v_xc &= \begin{cases}
-    vC_0  &  \left( 0<t<t_0 \right)\\
+  -D \frac{\partial C}{\partial z}\big|_{z=0} + v_zc &= \begin{cases}
+    v_zC_0  &  \left( 0<t<t_0 \right)\\
     0  &  \left( t>t_0 \right)\\
   \end{cases},\\
-  \frac{\partial C}{\partial x}\big|_{x=\infty} &= 0
+  \frac{\partial C}{\partial z}\big|_{z=\infty} &= 0
   \intertext{and the initial condition,}
-  C(x,0) &= C_i,
+  C(z,0) &= C_i,
   \label{1dinfBC}
   \intertext{the solution is given as }
-  C(x,t) = \frac{C_0}{2}\Bigg[&\mbox{erfc}\left[{\frac{L-v_xt}{2\sqrt{D_Lt}}}\right] 
-  + \frac{1}{2} \left(\frac{v_x^2t}{\pi D_L}\right)^{1/2}e^{\frac{-( L - 
-  v_xt)^2}{4D_Lt}}\nonumber\\
+  C(z,t) = \frac{C_0}{2}\Bigg[&\mbox{erfc}\left[{\frac{L-v_zt}{2\sqrt{D_Lt}}}\right] 
+  + \frac{1}{2} \left(\frac{v_z^2t}{\pi D_L}\right)^{1/2}e^{\frac{-( L - 
+  v_zt)^2}{4D_Lt}}\nonumber\\
   &- \frac{1}{2}\left( 
-  1+\frac{v_xL}{D_L}+\frac{v_x^2t}{D_L}\right)e^\frac{v_xL}{D_L}\mbox{erfc}\left[\frac{L-V_xt}{2\sqrt{D_Lt}}\right]
+  1+\frac{v_zL}{D_L}+\frac{v_z^2t}{D_L}\right)e^\frac{v_zL}{D_L}\mbox{erfc}\left[\frac{L-V_zt}{2\sqrt{D_Lt}}\right]
   \Bigg].
 \end{align}
 
