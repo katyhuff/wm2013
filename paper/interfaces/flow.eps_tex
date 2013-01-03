@@ -58,11 +58,11 @@
     \put(0.86003438,0.0055951){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$r=r_{wp}$}}}%
     \put(0.02797489,0.39437909){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Source Term:}}}%
     \put(0.02797489,0.30147024){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dirichlet:}}}%
-    \put(0.02797489,0.08468294){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$-nD\frac{\partial C}{\partial z}\Big|_{r_{wf}} + nv_zC(r_{wf})$}}}%
+    \put(0.02797489,0.08468294){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$-\theta D\frac{\partial C}{\partial z}\Big|_{r_{wf}} + \theta v_zC(r_{wf})$}}}%
     \put(0.02797489,0.18275338){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\frac{\partial C}{\partial r}\Big|_{r_{wf}}$}}}%
     \put(0.60349357,0.39437909){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Source Term:}}}%
     \put(0.60349357,0.30147024){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{Dirichlet:}}}%
-    \put(0.60349357,0.08468294){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$-nD\frac{\partial C}{\partial z}\Big|_{r_{wp}} + nv_zC(r_{wp})$}}}%
+    \put(0.60349357,0.08468294){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$-\theta D\frac{\partial C}{\partial z}\Big|_{r_{wp}} + \theta v_zC(r_{wp})$}}}%
     \put(0.60349357,0.18275338){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\frac{\partial C}{\partial r}\Big|_{r_{wp}}$}}}%
     \put(0.60349357,0.36857108){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\dot{m}_{wp}$}}}%
     \put(0.02797489,0.36857108){\color[rgb]{0,0,0}\makebox(0,0)[lb]{\smash{$\dot{m}_{wf}$}}}%

@@ -10,27 +10,27 @@ becomes \cite{schwartz_fundamentals_2003, wang_introduction_1982, van_genuchten_
 
     \begin{align}
       J &= J_{dis} + J_{adv}\nonumber\\
-      &= -n(D_{mdis} + \tau D_m)\nabla C + nvC\nonumber\\ 
-      &= -nD\nabla C + nvC \nonumber\\ 
+      &= -\theta(D_{mdis} + \tau D_m)\nabla C + \theta vC\nonumber\\ 
+      &= -\theta D\nabla C + \theta vC \nonumber\\ 
       \intertext{which, for uniform flow in $\hat{k}$, is}
       &=\left(-nD_{xx} \frac{\partial C}{\partial x}
              \right)\hat{\imath}
-             + \left( -nD_{yy} \frac{\partial C}{\partial y}
+             + \left( -\theta D_{yy} \frac{\partial C}{\partial y}
             \right)\hat{\jmath}
-            + \left( -nD_{zz} \frac{\partial C}{\partial z}
-             + nv_zC 
+            + \left( -\theta D_{zz} \frac{\partial C}{\partial z}
+             + \theta v_zC 
             \right)\hat{k},
       \label{unidirflow}
       \intertext{where}
       J_{dif} &= \mbox{ Total Dispersive Mass Flux }[kg/m^2/s]\nonumber\\
       J_{adv} &= \mbox{ Advective Mass Flux }[kg/m^2/s]\nonumber\\
       \tau &= \mbox{ Toruosity }[-] \nonumber\\
-      n &= \mbox{ Porosity }[\%] \nonumber\\
+      \theta &= \mbox{ Porosity }[\%] \nonumber\\
       D_m &= \mbox{ Molecular diffusion coefficient }[m^2/s]\nonumber\\
       D_{mdis} &= \mbox{ Coefficient of mechanical dispersivity}[m^2/s]\nonumber\\
       D &= \mbox{ Effective Dispersion Coefficient }[m^2/s]\nonumber\\
       C &= \mbox{ Concentration }[kg/m^3]\nonumber\\
-      v &= \mbox{ Advective velocity. }[m/s].\nonumber
+      v &= \mbox{ Fluid Velocity in the medium }[m/s].\nonumber
     \end{align}
 
 Solutions to this equation can be categorized by their boundary conditions and 
@@ -61,7 +61,7 @@ The second type, specified-flow or Neumann type boundary conditions describe a f
 concentration gradients at the boundary of the domain,
 
     \begin{align}
-      \frac{\partial C(\vec{r},t)}{\partial r} &= nD\vec{J}(t) \hspace{1mm}\mbox{ for } 
+      \frac{\partial C(\vec{r},t)}{\partial r} &= \theta D\vec{J}(t) \hspace{1mm}\mbox{ for } 
       \vec{r} \in \Gamma
       \intertext{where}
       \vec{r} &= \mbox{ position vector }\nonumber\\
@@ -75,10 +75,7 @@ flux along a boundary,
 
     \begin{align}
       -D\frac{\partial C}{\partial z} + v_zC &= v_zC(\vec{r},t) 
-      \hspace{1mm}\mbox{ for }\vec{r} \in \Gamma
-      \intertext{where}
-      D &= \mbox{ hydrodynamic dispersion coefficient } [m^2/s]\nonumber\\
-      v_z &= \mbox{ outward (upward) fluid velocity} [m/s].\nonumber
+      \hspace{1mm}\mbox{ for }\vec{r} \in \Gamma.
     \end{align}  
 
 The spatial concentration throughout the volume is sufficient to fully describe 
