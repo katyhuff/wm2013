@@ -37,8 +37,8 @@ m_{ij}^n &= \int_{t_{n-1}}^{t_n}\dot{m}_{ij}(t')dt' \nonumber\\
 The concentration boundary condition must also be defined at the outer boundary 
 to support parent components that utilize the Dirichlet boundary condition. For 
 the degradation model, which incorporates no diffusion or advection, the 
-concentration at the boundary is the average concentration in the saturated pore 
-volume,
+concentration, $C_{ij}$ at the boundary between cells $i$ and $j$ is the average 
+concentration in the saturated pore volume,
 
 \begin{align}
 C_{ij}^n &= \frac{m_i^n}{V_{vi}}
