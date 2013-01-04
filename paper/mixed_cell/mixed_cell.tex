@@ -112,7 +112,6 @@ the pore fluid by sorption.  So too, contaminant mass released from the intact
 matrix by degradation is distributed between dissolved mass in the free fluid 
 and sorbed mass in the precipitated solids.
 
-
 To solve for the boundary condiitons in this model, the amount of non-sorbed 
 contaminant mass in the free fluid must be found. This value, $m_{ffl}$, can be 
 expressed in terms of the total degraded contaminant mass and the contaminant 
@@ -124,7 +123,7 @@ m_{ffl} &= m_{ffT} - m_{psc}.
 \end{align}
 
 The mass of contaminant sorbed into the precipitated solids can be found using a 
-linear isotherm model \cite{?}, characterized by the relationship 
+linear isotherm model \cite{KDHFLAG}, characterized by the relationship 
 \begin{align}
 s_{i} &= K_{di} c_{i}
 \label{linear_iso}
@@ -139,7 +138,7 @@ Thus, from \eqref{solid_conc},
 \begin{align}
 s_{i,ps} &= \frac{\mbox{contaminant mass in precipitated solids} }{ \mbox{total mass of precipitated solids}}\nonumber\\
          &= \frac{m_{psc}}{m_{psT}}\nonumber\\
-         &= \frac{m_{psc}}{m_{psm} + m_{psc}}\nonumber\\
+         &= \frac{m_{psc}}{m_{psm} + m_{psc}}\nonumber
 \intertext{where}
 m_{psm}  &= \mbox{ noncontaminant mass in precipitated solids }[kg]\nonumber\\
          &= \rho_bV_{ps}\nonumber\\
@@ -160,9 +159,11 @@ m_{psc} &= s_{ps}m_{psT}\nonumber\\
 \intertext{which, rearranged, becomes }
 0         &= m_{psc}^2 + \left( -m_{ffT} + m_{psm} + \frac{V_{ff}}{K_d} \right)m_{psc} - m_{ffT}m_{psm}\nonumber
 \intertext{and is solved using the quadratic formula, such that}
-m_{psc}   &= \frac{m_{ffT} - m_{psm} - \frac{V_{ff}}{K_d}}{2} \nonumber\\
-          & \pm\frac{\sqrt{m_{ffT}^2 + m_{psm}^2 + \frac{V_{ff}^2}{K_d^2} + 2m_{ffT}m_{psm} - 
-             \frac{2V_{ff}m_{ffT}}{K_d} + \frac{2V_{ff}m_{psm}}{K_d} } }{2} \nonumber
+m_{psc}   &= \frac{m_{ffT} - m_{psm} - \frac{V_{ff}}{K_d}}{2}
+             \pm\frac{\sqrt{\left(-m_{ffT} + m_{psm} + \frac{V_{ff}}{K_d}\right)^2 -4m_{ffT}m_{psm}}}{2}\nonumber\\  
+          %&= \frac{m_{ffT} - m_{psm} - \frac{V_{ff}}{K_d}}{2} \nonumber\\
+          %& \pm\frac{\sqrt{m_{ffT}^2 + m_{psm}^2 + \frac{V_{ff}^2}{K_d^2} + 2m_{ffT}m_{psm} - 
+          %   \frac{2V_{ff}m_{ffT}}{K_d} + \frac{2V_{ff}m_{psm}}{K_d} } }{2} \nonumber
 \intertext{which, again rearranged, becomes}
           &= \frac{1}{2} \left(m_{ffT} - m_{psm} - \frac{V_{ff}}{K_d}\right) \nonumber\\
           & \pm \frac{1}{2} \sqrt{m_{ffT}^2 + 2m_{ffT}\left(m_{psm} - 
@@ -203,4 +204,4 @@ C(x,y,z,t) = \frac{m_{ffl}(t)}{V_{ff}(t)}\forall (x,y,x) \in \Gamma.
 \end{align}
 
 From this boundary condition in combination with global advective velocity 
-data, other boundary conditions can be found. 
+data, all other boundary conditions can be found. 
