@@ -82,7 +82,7 @@ such that
 \begin{align}
 C_{ffT}(t_n) &= \left[C_0 + \frac{\int_{t_0}^{t_n} \dot{m}_{i}(t') dt'}{V_{ff}(t_n)}\right] 
 \intertext{and}
-m_{ffT}(t_n) &= C_{ff}(t_n)\theta V_{ff}(t_n)\nonumber\\
+m_{ffT}(t_n) &= C_{ff}(t_n) V_{ff}(t_n)\nonumber\\
        &= \left[C_0 + \frac{\int_{t_0}^{t_n} \dot{m}_{i}(t') dt'}{V_{ff}(t_n)}\right] V_{ff}(t_n) \nonumber\\
        &= C_0V_{ff}(t_n) + \int_{t_0}^{t_n} \dot{m}_{i} dt'.
 \end{align}
@@ -124,7 +124,7 @@ m_{ffl} &= m_{ffT} - m_{psc}.
 \end{align}
 
 The mass of contaminant sorbed into the precipitated solids can be found using a 
-linear isotherm model, characterized by the relationship 
+linear isotherm model \cite{?}, characterized by the relationship 
 \begin{align}
 s_{i} &= K_{di} c_{i}
 \label{linear_iso}
@@ -134,17 +134,17 @@ K_{di} &= \mbox{ the distribution coefficient of isotope i}[m^3/kg]\nonumber\\
 c_i &= \mbox{ the liquid concentration of isotope i }[kg/m^3].\nonumber
 \end{align}
 
-Thus, 
+Thus, from \eqref{solid_conc},
 
 \begin{align}
 s_{i,ps} &= \frac{\mbox{contaminant mass in precipitated solids} }{ \mbox{total mass of precipitated solids}}\nonumber\\
-         &= \frac{m_{psc}}{m_{pst}}\nonumber\\
+         &= \frac{m_{psc}}{m_{psT}}\nonumber\\
          &= \frac{m_{psc}}{m_{psm} + m_{psc}}\nonumber\\
 \intertext{where}
 m_{psm}  &= \mbox{ noncontaminant mass in precipitated solids }[kg]\nonumber\\
          &= \rho_bV_{ps}\nonumber\\
 m_{psc}  &= \mbox{ contaminant mass in precipitated solids }[kg]\nonumber\\
-m_{psm}  &= \rho_bV_{ps}.\nonumber
+\rho_b   &= \mbox{ bulk (dry) density of the medium }[kg/m^3].\nonumber\\
 \end{align}
 
 The following expression results, giving contaminant mass in the precipitated 
