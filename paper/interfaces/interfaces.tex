@@ -13,7 +13,7 @@ becomes \cite{schwartz_fundamentals_2003, wang_introduction_1982, van_genuchten_
       &= -\theta(D_{mdis} + \tau D_m)\nabla C + \theta vC\nonumber\\ 
       &= -\theta D\nabla C + \theta vC \nonumber\\ 
       \intertext{which, for uniform flow in $\hat{k}$, is}
-      &=\left(-nD_{xx} \frac{\partial C}{\partial x}
+      &=\left(-\theta D_{xx} \frac{\partial C}{\partial x}
              \right)\hat{\imath}
              + \left( -\theta D_{yy} \frac{\partial C}{\partial y}
             \right)\hat{\jmath}
@@ -22,7 +22,7 @@ becomes \cite{schwartz_fundamentals_2003, wang_introduction_1982, van_genuchten_
             \right)\hat{k},
       \label{unidirflow}
       \intertext{where}
-      J_{dif} &= \mbox{ Total Dispersive Mass Flux }[kg/m^2/s]\nonumber\\
+      J_{dis} &= \mbox{ Total Dispersive Mass Flux }[kg/m^2/s]\nonumber\\
       J_{adv} &= \mbox{ Advective Mass Flux }[kg/m^2/s]\nonumber\\
       \tau &= \mbox{ Toruosity }[-] \nonumber\\
       \theta &= \mbox{ Porosity }[\%] \nonumber\\
@@ -35,7 +35,7 @@ becomes \cite{schwartz_fundamentals_2003, wang_introduction_1982, van_genuchten_
 
 Solutions to this equation can be categorized by their boundary conditions and 
 those boundary conditions serve as the interfaces between components in the 
-\Cyder library of nuclide transport models.
+Cyder library of nuclide transport models.
 
   \begin{figure}[htp!]
     \begin{center}
@@ -79,10 +79,10 @@ flux along a boundary,
     \end{align}  
 
 The spatial concentration throughout the volume is sufficient to fully describe 
-implementation of the following nuclide transport models within \Cyder. This is 
+implementation of the following nuclide transport models within Cyder. This is 
 supported by the implementation in which vertical advective velocity is uniform 
 throughout the system and in which parameters such as the dispersion coefficient 
-are known for each component. Since this is the case in \Cyder, description of 
+are known for each component. Since this is the case in Cyder, description of 
 the Dirichlet condition is sufficient to fully define calculation of the Neumann 
 and Cauchy type conditions.
 

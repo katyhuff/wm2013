@@ -20,7 +20,6 @@ urlcolor = Blue
 \def\thesection       {\arabic{section}}
 \def\thesubsection     {\thesection.\alph{subsection}}
 \newcommand{\Cyclus}{\textsc{Cyclus}}
-\newcommand{\Cyder}{\textsc{Cyder}}
 % For WMSym (Eqn. #) requirement :
 \renewcommand{\theequation}{Eq. \arabic{equation}}
 % For the header to say all the stuff WMSym  needs :
@@ -55,7 +54,7 @@ urlcolor = Blue
 \date{}
 
 % concise yet adequately descriptive title
-\title{\TitleFont Hydrologic Nuclide Transport Models in \Cyder, A Geologic Disposal Software Library - 13328}
+\title{\TitleFont Hydrologic Nuclide Transport Models in Cyder, A Geologic Disposal Software Library - 13328}
 \begin{document}
 \maketitle
 % So that the header shows up on the first page too.
@@ -125,13 +124,13 @@ urlcolor = Blue
 Component level and system level abstraction of detailed computational geologic 
 repository models have resulted in four rapid computational models of hydrologic 
 radionuclide transport at varying levels of detail. Those models are described, 
-as is their implementation in \Cyder, a software library of 
+as is their implementation in Cyder, a software library of 
 interchangeable radionuclide transport models appropriate for representing 
 natural and engineered barrier components of generic geology repository 
 concepts. A proof of principle demonstration was also conducted in which these models 
 were used to represent the natural and engineered barrier components of a 
 repository concept in a reducing, homogenous, generic geology. 
-This base case demonstrates integration of the \Cyder open source library with the Cyclus 
+This base case demonstrates integration of the Cyder open source library with the Cyclus 
 computational fuel cycle systems analysis platform to facilitate calculation of
 repository performance metrics with respect to fuel cycle choices.
 
@@ -154,7 +153,7 @@ modularity and speed while providing modeling options at various levels of
 detail. Sensitivity analyses and abstraction efforts conducted to develop the 
 models described in this work sought to capture the dominant physics of detailed 
 repository behaviors so that abstracted models can be robustly and flexibly 
-implemented in the \Cyder disposal environment library without sacrificing the 
+implemented in the Cyder disposal environment library without sacrificing the 
 simulation speed required by the Cyclus fuel cycle simulator.
 
 \section*{MODEL INTERFACES}
@@ -165,9 +164,9 @@ simulation speed required by the Cyclus fuel cycle simulator.
 
 The results of this work consist of four models that are the product of an 
 abstraction effort with more detailed tools.  The analytic models modified by 
-abstraction and implemented in \Cyder include a degradation rate model, a mixed 
-cell model, a response function model, and a one-dimensional solution (Leij and 
-Van Genuchten \cite{leij_analytical_1991}) to the advection-dispersion equation.
+abstraction and implemented in Cyder include a degradation rate model, a mixed 
+cell model, a response function model, and a one-dimensional solution (Leij et. 
+al \cite{leij_analytical_1991}) to the advection-dispersion equation.
 
 \input{deg_rate/deg_rate}
 
@@ -182,7 +181,7 @@ Van Genuchten \cite{leij_analytical_1991}) to the advection-dispersion equation.
 \input{base_case/base_case}
 
 \section*{CONCLUDING REMARKS}
-The \Cyder source code in which these models are implemented as well as 
+The Cyder source code in which these models are implemented as well as 
 associated documentation are freely available to interested researchers and 
 potential model developers. The application programming interface to this 
 software library is intentionally general, facilitating the incorporation of the 
