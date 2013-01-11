@@ -1,4 +1,4 @@
-\subsection*{Mixed Cell Volume Radionuclide Model}\label{sec:mixed_cell}
+\subsection*{Mixed Cell Volume Radionuclide Transport Model}\label{sec:mixed_cell}
 Slightly more complex and suited to representing waste form and buffer 
 components, the mixed cell model incorporates solubility limited, congruent 
 release under the influence of elemental solubility limits, sorption, diffusive 
@@ -31,7 +31,7 @@ A graphical representation of the mixed cell model is given in Figures
   \end{center}
   \caption[Degrading Mixed Cell Control Volume]{Once dissolution begins, the 
   control volume contains a partially dissolved material matrix, contaminated 
-  pore water, and precipitated solids.}
+  pore water, and degraded and precipitated solids.}
   \label{fig:dissolved}
 \end{minipage}
 \end{figure}
@@ -49,7 +49,7 @@ V_{im}(t_n) &= V_T - V_T\int_{t_0}^{t_n} f(\cdots) dt.
 \label{vim}
 \end{align}
 
-Finally, the volume of the precipitated solids can be expressed as
+Finally, the volume of the degraded and precipitated solids can be expressed as
 \begin{align}
 V_{ps}(t_n) &= (1 - \theta)V_T\int_{t_0}^{t_n} f(\cdots) dt.
 \label{vps}
@@ -110,19 +110,19 @@ In this model, sorption is taken into account throughout the volume. In the
 intact matrix, the contaminant mass is distributed between the pore walls and 
 the pore fluid by sorption.  So too, contaminant mass released from the intact 
 matrix by degradation is distributed between dissolved mass in the free fluid 
-and sorbed mass in the precipitated solids.
+and sorbed mass in the degraded and precipitated solids.
 
-To solve for the boundary condiitons in this model, the amount of non-sorbed 
+To solve for the boundary conditons in this model, the amount of non-sorbed 
 contaminant mass in the free fluid must be found. This value, $m_{ffl}$, can be 
 expressed in terms of the total degraded contaminant mass and the contaminant 
-mass in the precipitated solid,
+mass in the degraded and precipitated solid,
 
 \begin{align}
 m_{ffl} &= m_{ffT} - m_{psc}.
 \label{m_ffl}
 \end{align}
 
-The mass of contaminant sorbed into the precipitated solids can be found using a 
+The mass of contaminant sorbed into the degraded and precipitated solids can be found using a 
 linear isotherm model \cite{schwartz_fundamentals_2003}, characterized by the relationship 
 \begin{align}
 s_{i} &= K_{di} c_{i}
@@ -136,17 +136,17 @@ c_i &= \mbox{ the liquid concentration of isotope i }[kg/m^3].\nonumber
 Thus, from \eqref{solid_conc},
 
 \begin{align}
-s_{i,ps} &= \frac{\mbox{contaminant mass in precipitated solids} }{ \mbox{total mass of precipitated solids}}\nonumber\\
+s_{i,ps} &= \frac{\mbox{contaminant mass in degraded and precipitated solids} }{ \mbox{total mass of degraded and precipitated solids}}\nonumber\\
          &= \frac{m_{psc}}{m_{psT}}\nonumber\\
          &= \frac{m_{psc}}{m_{psm} + m_{psc}}\nonumber
 \intertext{where}
-m_{psm}  &= \mbox{ noncontaminant mass in precipitated solids }[kg]\nonumber\\
+m_{psm}  &= \mbox{ noncontaminant mass in degraded and precipitated solids }[kg]\nonumber\\
          &= \rho_bV_{ps}\nonumber\\
-m_{psc}  &= \mbox{ contaminant mass in precipitated solids }[kg]\nonumber\\
+m_{psc}  &= \mbox{ contaminant mass in degraded and precipitated solids }[kg]\nonumber\\
 \rho_b   &= \mbox{ bulk (dry) density of the medium }[kg/m^3].\nonumber\\
 \end{align}
 
-The following expression results, giving contaminant mass in the precipitated 
+The following expression results, giving contaminant mass in the degraded and precipitated 
 solids in terms of the sorption coefficient,
 \begin{align}
 m_{psc} &= s_{ps}m_{psT}\nonumber\\
@@ -185,7 +185,7 @@ m_{ffl}   &= m_{ffT} - \frac{1}{2} \left(m_{ffT} - m_{psm} - \frac{V_{ff}}{K_d}\
 
 
 \subsubsection*{Solubility}
-  In addition to engineered barriers, contaminant movement is constrained by 
+  In addition to engineered barriers, contaminant transport is constrained by 
   the solubility limit \cite{hedin_integrated_2002}, 
     \begin{align}
       m_{s,i} &\leq V_w C_{sol,i},
