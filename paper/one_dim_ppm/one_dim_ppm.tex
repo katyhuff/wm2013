@@ -36,12 +36,28 @@ For the boundary conditions,
   C(z,0) &= C_i,
   \label{1dinfBC}
   \intertext{the solution is given as }
-  C(z,t) = \frac{C_0}{2}\Bigg[&\mbox{erfc}\left[{\frac{L-v_zt}{2\sqrt{D_Lt}}}\right] 
-  + \frac{1}{2} \left(\frac{v_z^2t}{\pi D_L}\right)^{1/2}e^{\frac{-( L - 
-  v_zt)^2}{4D_Lt}}\nonumber\\
-  &- \frac{1}{2}\left( 
-  1+\frac{v_zL}{D_L}+\frac{v_z^2t}{D_L}\right)e^\frac{v_zL}{D_L}\mbox{erfc}\left[\frac{L-V_zt}{2\sqrt{D_Lt}}\right]
-  \Bigg].
+  C(z,t) &= 
+  \frac{C_0}{4}\bigints_0^t\frac{v}{R}\Lambda_3(\tau)\Gamma_2(\tau)d\tau + 
+  \frac{\lambda}{2R}\bigints_0_t\Lambda_4(\tau)
+  \intertext{where, for our coordinate system,}
+  \Lambda_3(\tau) &= e^{-\frac{\mu\tau}{R}}\Bigg[\sqrt{\frac{R}{\pi D_z\tau}}e^{-\frac{(Rz-v\tau)^2}{4RD_z\tau}} - 
+    \frac{v}{2D_z}e^\frac{vz}{D_z}\erfc{\frac{Rz+v\tau}{\sqrt{4RD_z\tau}}}\Bigg]\\
+  \Gamma_2(\tau) &= 
+      \Bigg[ \erfc{\frac{x-a}{\sqrt{\frac{4D_x\tau}{R}}} } - 
+             \erfc{\frac{x+a}{\sqrt{\frac{4D_x\tau}{R}}} } \Bigg]
+      \Bigg[ \erfc{\frac{y-b}{\sqrt{\frac{4D_y\tau}{R}}} } -
+             \erfc{\frac{y+b}{\sqrt{\frac{4D_y\tau}{R}}} } \Bigg]
+  \intertext{and}
+  \Lambda_4(\tau) &= e^{-\frac{\mu\tau}{R}}\Bigg[
+    \erfc{\frac{v\tau-Rz}{\sqrt{4RD_z\tau}} 
+    + \left(1+\frac{v}{D_z}\left(z+\frac{v\tau}{R}\right)\right)e^\frac{vz}{D_z}
+    \erfc{\frac{Rz+v\tau}{\sqrt{4RD_z\tau}} 
+    - \sqrt{\frac{4v^2\tau}{\pi RD_z}}e^{-\frac{(Rz-v\tau)^2}{4RD_z\tau}}
+    \Bigg]\\
 \end{align}
+
+We make the simplifying one dimensional assumption that $x=0$ and $y=0$ such 
+that $\Gamma_2$ becomes
+.
 
 
