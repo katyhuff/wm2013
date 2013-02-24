@@ -1,0 +1,376 @@
+\begin{frame}
+  \frametitle{Advection Dispersion Equation}
+  \footnotesize{
+  In a saturated, reducing environment, contaminants are transported by 
+  \textbf{dispersion} and \textbf{advection},  
+    \begin{align}
+      J &= J_{dis} + J_{adv}\nonumber\\
+      &= -n(D_{mdis} + \tau D_m)\nabla C + nvC\nonumber\\ 
+      &= -nD\nabla C + nvC \nonumber\\ 
+      \intertext{which is, for uniform flow}
+      &=\left(-nD_{xx} \frac{\partial C}{\partial x}
+             + nv_xC \right)\hat{\imath}
+             + \left( -nD_{yy} \frac{\partial C}{\partial y}
+            \right)\hat{\jmath}
+            + \left( -nD_{zz} \frac{\partial C}{\partial z}
+            \right)\hat{k},
+      \intertext{where}
+      J_{dif} &= \mbox{ Total Dispersive Mass Flux }[kg/m^2/s]\nonumber\\
+      J_{adv} &= \mbox{ Advective Mass Flux }[kg/m^2/s]\nonumber\\
+      \tau &= \mbox{ Toruosity }[-] \nonumber\\
+      n &= \mbox{ Porosity }[\%] \nonumber\\
+      D_m &= \mbox{ Molecular diffusion coefficient }[m^2/s]\nonumber\\
+      D_{mdis} &= \mbox{ Coefficient of mechanical dispersivity}[m^2/s]\nonumber\\
+      D &= \mbox{ Effective Dispersion Coefficient }[m^2/s]\nonumber\\
+      C &= \mbox{ Concentration }[kg/m^3],\nonumber\\
+    \end{align}
+    }
+
+\end{frame}
+
+\begin{frame}
+  \frametitle{Sorption and Solubility}
+  \footnotesize{
+  In addition to engineered barriers, their movement is constrained by 
+  the solubility limit, 
+    \begin{align}
+      m_i &\leq V_w C_{sol,i},
+    \intertext{and sorption,}
+      S &=\frac{V_w(C_0 -C)}{m_s}
+    \intertext{where}
+      m_i &= \mbox{ mass of isotope i in volume }V_w [kg]\nonumber\\ 
+      V_w &= \mbox{ volume of the solution }[m^3]\nonumber\\
+      C_{sol,i} &= \mbox{ solubility limit, the maximum concentration of i }[kg_m^3]\nonumber\\
+      S &= \mbox{ mass sorbed on the surface }[kg/kg]\nonumber\\
+      C_0 &= \mbox{ initial concentration in the solution }[kg_m^3]\nonumber\\
+      C &= \mbox{ equilibrium concentration in the solution }[kg/m^3]\nonumber\\
+      m_s &= \mbox{ sediment mass }[kg].\nonumber
+    \end{align}
+    The function $S(C)$ is called a sorption isotherm. 
+    }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Component Interfaces}
+  \footnotesize{
+    For uniform flow in the vertical $\hat{z}$ direction, the governing equation is,
+
+  \begin{align}
+    D_x \frac{\partial^2 C}{\partial x^2} +
+    D_y \frac{\partial^2 C}{\partial y^2} +
+    D_z \frac{\partial^2 C}{\partial z^2} +
+    v_x \frac{\partial C}{\partial z}  = R_f \frac{\partial C}{\partial t}.  
+    \label{unidirflow}
+  \end{align}
+
+  \begin{figure}[htp!]
+    \begin{center}
+      \def\svgwidth{\textwidth}
+      \input{cyder/images/flow.eps_tex}
+    \end{center}
+    \caption{The boundaries between components are robust interfaces defined by 
+    Source Term, Dirichlet, Neumann, and Cauchy boundary conditions.}
+    \label{fig:flow}
+  \end{figure}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Boundary Conditions}
+  \footnotesize{
+    \textbf{First, specified-head or Dirichlet type} boundary conditions define a specified species 
+    concentration
+    
+    \begin{align}
+      C(\vec{r},t) = C_0(\vec{r},t)\hspace{1mm}\mbox{ for } \left( \vec{r} \right) \in 
+      \Gamma.
+    \end{align}
+    
+    \textbf{Second, specified-flow, or Neumann type} boundary conditions describe a full set of 
+    concentration gradients 
+    
+    \begin{align}
+      \frac{\partial C(\vec{r},t)}{\partial r} &= nD\vec{J}(t) \hspace{1mm}\mbox{ for } 
+      \vec{r} \in \Gamma.
+      \intertext{where}
+      \vec{r} &= \mbox{ position vector }\nonumber\\
+      \Gamma &= \mbox{ domain boundary }\nonumber\\
+      \vec{J}(t) &= \mbox{ solute mass flux } [kg/m^2\cdot s].\nonumber
+    \end{align}
+    
+    \textbf{Third, head-dependent, or Cauchy type}, defines a solute 
+    flux along the boundary,
+    
+    \begin{align}
+      -D\frac{\partial C}{\partial x} + v_xC &= v_xC(\vec{r},t).
+      \intertext{where}
+      D &= \mbox{ hydrodynamic dispersion coefficient } [m^2/s]\nonumber\\
+      v_x &= \mbox{ outward fluid flux} [m/s]\nonumber\\
+    \end{align}  
+  }
+\end{frame}
+
+\begin{frame}
+\frametitle{Implicit Timestepping}
+\footnotesize{Each Component passes some information radially outward to the nested 
+Component immediately containing it and some information radially 
+inward to the nested Component it contains. 
+
+That is, in Component 0, the innermost Component in a nested series, the mass or concentration 
+distribution in the Component at time $t_n$ is found from the inner boundary 
+condition at time $t_n$ and the outer boundary condition at $t_{n-1}$. Then, from 
+the resulting mass or concentration distribution, I can solve, numerically, for 
+the outer boundary condition at $t_n$ which can, in turn, be used by the parent 
+component 1 as the $t_n$ inner boundary condition of its own solution. For each timestep :
+
+\begin{align}
+  BC(i, r_o, c_1, t_n) &= f( BC(i, r_i, c_0, t_n), BC(i, r_o, c_1, t_{n-1}) )
+  \intertext{where}
+  BC  &= \mbox{boundary condition }\nonumber\\
+  i &= \mbox{the isotope }\nonumber\\
+  r_i &= \mbox{the inner boundary radius } [m]\nonumber\\
+  r_o &= \mbox{the outer boundary radius } [m]\nonumber\\
+  c_0 &= \mbox{the innermost Component}\nonumber\\
+  c_1 &= \mbox{the Component that contains c}_0\nonumber\\
+  f &= \mbox{functional form of the contaminant transport algorithm}\nonumber\\
+  t_n &= \mbox{timestep n.}\nonumber
+\end{align}
+}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nested Components}
+  Each component represents a 
+  \begin{itemize}
+    \item Waste Form
+    \item Waste Package
+    \item Buffer
+    \item or Far Field (geologic medium).
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Nested Components}
+  Each Component has : 
+  \begin{itemize}
+    \item a Geometry to describe its dimensions and location
+    \item a NuclideModel for contaminant transport 
+    \item a ThermalModel for heat transport
+    \item a Parent Component at its external barrier
+    \item one or more Daughter Components at its internal barrier
+  \end{itemize}
+
+  Components have other data members such as a Type (WF, WP, BUFFER, FF), a 
+  material data table, a start date, etc. 
+\end{frame}
+
+\begin{frame}
+  The NuclideModel in a Component can be interchangeably represented by any of 
+  the four nuclide transport models. 
+    \begin{itemize}
+      \item Degradation Rate Based Failure Model
+      \item Mixed Cell with Degradation, Sorption, Solubility Limitation
+      \item Lumped Parameter Model
+      \item 1D Advection Dispersion Solution
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Radionuclide Transport: Rate Based Congruent Release}
+  \footnotesize{
+  Contaminants are released congruently with degradation of the component.
+
+  That is, for a rate of $\epsilon [\%]$ per year, where the initial condition is some 
+  contained mass, $m_0$, the boundary conditions supplied to external components 
+  at the outer boundary $r_{bc}$are :
+
+  \begin{align}
+    \intertext{Source Term}
+    \dot{m} &= \epsilon m_0
+    \intertext{Dirichlet}
+    C(r_{bc}) &= \dot{m}/V_w 
+    \intertext{Neumann}
+    \frac{\partial C}{\partial r} &= ( \dot{m}/V_w - C_{ext} )/(r_{ext} - r_{in})
+    \intertext{Cauchy}
+    -D \frac{\partial C}{\partial x}\big|_{x=x_{bc}} + v_xc &= vC(x_{bc}) 
+  \end{align}
+  }
+\end{frame}
+
+\begin{frame}
+  \frametitle{Radionuclide Transport: Mixed Cell}
+  % Waste Form
+  \begin{figure}[h!]
+    \begin{center}
+      \includegraphics[height=.6\textwidth]{cyder/images/mixed_cell_whole.eps}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[ctb!]
+  \frametitle{Radionuclide Transport: Mixed Cell}
+  % Waste Form
+  \begin{figure}[h!]
+    \begin{center}
+      \includegraphics[height=.6\textwidth]{cyder/images/mixed_cell_degraded.eps}
+    \end{center}
+  \end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Radionuclide Transport: Lumped Parameter Transport Model}
+
+\begin{figure}[htbp!]
+  \begin{center}
+    \def\svgwidth{\textwidth}
+    \input{cyder/images/lumpedseries.eps_tex}
+  \end{center}
+  \caption{ For systems in which the flow can be assumed constant, it is 
+  possible to model a system of volumes as a connected lumped paramter models 
+  according to a relationship between the incoming concentration, $C_{in}(t)$, 
+  and the outgoing concentration, $C_{out}(t)$.}
+  \label{fig:lumpedseries}
+\end{figure}
+\footnotesize{
+  \begin{align}
+  C_{out}(t) &= \int_0^\infty C_{in}(t-t')g(t')e^{-\lambda t'}dt'
+  \label{lumped2}
+  \intertext{where}
+  t'  &= \mbox{ time of entry }[s]\nonumber\\
+  t-t'  &= \mbox{ transit time }[s]\nonumber\\
+  g(t-t')  &= \mbox{ response function, a.k.a. transit time 
+  distribution}[-]\nonumber]\\
+  \lambda &= \mbox{ radioactive decay constant, 1 to neglect}[s^{-1}]
+\end{align}
+}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Radionuclide Transport: Lumped Parameter Transport Model}
+\footnotesize{
+Selection of the response function is usually based on experimental tracer 
+results. Canonical forms include :
+\begin{align}
+  \mbox{the Piston Flow Model (PFM), } g(t') &= \delta{(t'-t_t))}\\
+  \mbox{ the Exponential Model (EM), } g(t') &= 
+  \frac{1}{t_t}e^{-\frac{t'}{t_t}}\\
+  \mbox{ and the Dispersion Model (DM), } g(t') &= \frac{\left[ \left( \frac{t\pi t'}{t_t Pe} \right) 
+  (\frac{1}{t'})e^{- \left( 1- \frac{t'}{t_t}  \right)^2} 
+  \right]}{\frac{4t'}{t_tPe}}, 
+  \intertext{where}
+  Pe  &= \mbox{ Peclet number }[-]\nonumber\\
+  t_t  &= \mbox{ mean tracer age }[s]\nonumber\\
+    &= t_w \mbox{ if there are no stagnant areas}\nonumber\\
+  t_w  &= \mbox{ mean residence time of water}[s].\nonumber\\
+\intertext{The solutions to these for constant concentration at the source 
+boundary give}
+  C(t) &=\begin{cases}
+    PFM & C_0e^{-\lambda t_t}\\
+    EM  & \frac{C_0}{1+\lambda t_t}\\
+    DM  & \frac{C_0e^{Pe\sqrt{\left( 1-(1+\frac{4\lambda t_t}{Pe})\right)}}}{2}\\
+  \end{cases}
+  \label{lumpedsolns}
+\end{align}
+}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Radionuclide Transport: 1D Semi-Infinite, Cauchy B.C.}
+  \footnotesize{
+\begin{figure}[htbp!]
+  \begin{center}
+    \def\svgwidth{.5\textwidth}
+    \input{cyder/images/1dinf.eps_tex}
+  \end{center}
+  \caption{A one dimensional, semi-infinite model, unidirectional flow,
+  solution with Cauchy and Neumann boundary conditions}
+  \label{fig:1dinf}
+\end{figure}
+The solution is given (Leij et al., \cite{leij_analytical_1991})  for the
+boundary conditions :
+
+For the boundary conditions, 
+\begin{align}
+  -D \frac{\partial C}{\partial z}\big|_{z=0} + v_zc &= \begin{cases}
+    v_zC_0  &  \left( 0<t<t_0 \right)\\
+    0  &  \left( t>t_0 \right)\\
+  \end{cases},\\
+  \frac{\partial C}{\partial z}\big|_{z=\infty} &= 0
+  \intertext{and the initial condition,}
+  C(z,0) &= C_i.
+  \label{1dinfBC}
+\end{align}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Radionuclide Transport: 1D Semi-Infinite, Cauchy B.C.}
+\footnotesize{
+The solution is given (Leij et al., \cite{leij_analytical_1991})  as :
+\begin{align}
+  C(z,t) &= 
+  \frac{C_0}{4}\int_0^t\frac{v}{R}\Lambda_3(\tau)\Gamma_2(\tau)d\tau + 
+  \frac{\lambda}{2R}\int_0^t\Lambda_4(\tau)
+  \intertext{which, for no $\lambda$ first order production becomes}
+  &= \frac{C_0}{4}\int_0^t\frac{v}{R}\Lambda_3(\tau)\Gamma_2(\tau)d\tau
+  \intertext{where}
+  R &= \mbox{Retardation factor }[-].
+\end{align}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Radionuclide Transport: 1D Semi-Infinite, Cauchy B.C.}
+\footnotesize{
+For the vertical flow coordinate system, $\Lambda_3$ and $\Gamma_2$ are defined 
+as
+\begin{align}
+  \Lambda_3(\tau) &= e^{-\frac{\mu\tau}{R}}\Bigg[\sqrt{\frac{R}{\pi D_z\tau}}e^{-\frac{(Rz-v\tau)^2}{4RD_z\tau}} - 
+    \frac{v}{2D_z}e^\frac{vz}{D_z}\erfc{\frac{Rz+v\tau}{\sqrt{4RD_z\tau}}}\Bigg]
+    \label{Lambda_3}
+  \intertext{and}
+  \Gamma_2(\tau) &= 
+      \Bigg[ \erfc{\frac{x-a}{\sqrt{\frac{4D_x\tau}{R}}} } - 
+             \erfc{\frac{x+a}{\sqrt{\frac{4D_x\tau}{R}}} } \Bigg]
+      \Bigg[ \erfc{\frac{y-b}{\sqrt{\frac{4D_y\tau}{R}}} } -
+             \erfc{\frac{y+b}{\sqrt{\frac{4D_y\tau}{R}}} } \Bigg]. 
+      \label{Gamma_2}
+\end{align}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Radionuclide Transport: 1D Semi-Infinite, Cauchy B.C.}
+\footnotesize{
+We make a few simplifying one dimensional assumptions. First, that the diffusion 
+coefficient of the medium is the same in the $\hat{x}$ and $\hat{y}$ directions 
+such that $D_x=D_y$. Also, we take the concentration around the origin for a 
+unit surface area, so $x=y=0$ and $a=b=1$. Thus, $\Gamma_2$ from equation \eqref{Gamma_2} becomes
+\begin{align}
+  \Gamma_2(\tau) = 2\left(\erfc{\frac{1}{\sqrt{\frac{4D_{xy}\tau}{R}}} 
+}^2\right).
+\end{align}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Radionuclide Transport: 1D Semi-Infinite, Cauchy B.C.}
+\footnotesize{
+Another simplification is that, in Cyclus, radioactive decay is handled external 
+to the components, so $\mu$, the constant of decay in equation \eqref{Lambda_3}, 
+goes to zero. Thus, 
+
+\begin{align}
+  C(z,t)&= \frac{C_0}{2}\int_0^t\frac{v}{R}
+  \Bigg[\sqrt{\frac{R}{\pi D_z\tau}}e^{-\frac{(Rz-v\tau)^2}{4RD_z\tau}} -
+    \frac{v}{2D_z}e^\frac{vz}{D_z}\erfc{\frac{Rz+v\tau}{\sqrt{4RD_z\tau}}}\Bigg]
+    \erfc{\frac{1}{\sqrt{\frac{4D_{xy}\tau}{R}}} }^2
+  d\tau .
+  \label{simple_leij}
+\end{align}
+}
+\end{frame}
