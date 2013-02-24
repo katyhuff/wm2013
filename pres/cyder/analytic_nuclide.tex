@@ -33,39 +33,11 @@
 \end{frame}
 
 \begin{frame}
-  \frametitle{Sorption and Solubility}
-  \footnotesize{
-  In addition to engineered barriers, their movement is constrained by 
-  the solubility limit, 
-    \begin{align}
-      m_i &\leq V_w C_{sol,i},
-    \intertext{and sorption,}
-      S &=\frac{V_w(C_0 -C)}{m_s}
-    \intertext{where}
-      m_i &= \mbox{ mass of isotope i in volume }V_w [kg]\nonumber\\ 
-      V_w &= \mbox{ volume of the solution }[m^3]\nonumber\\
-      C_{sol,i} &= \mbox{ solubility limit, the maximum concentration of i }[kg_m^3]\nonumber\\
-      S &= \mbox{ mass sorbed on the surface }[kg/kg]\nonumber\\
-      C_0 &= \mbox{ initial concentration in the solution }[kg_m^3]\nonumber\\
-      C &= \mbox{ equilibrium concentration in the solution }[kg/m^3]\nonumber\\
-      m_s &= \mbox{ sediment mass }[kg].\nonumber
-    \end{align}
-    The function $S(C)$ is called a sorption isotherm. 
-    }
-\end{frame}
-
-\begin{frame}
   \frametitle{Component Interfaces}
   \footnotesize{
-    For uniform flow in the vertical $\hat{z}$ direction, the governing equation is,
-
-  \begin{align}
-    D_x \frac{\partial^2 C}{\partial x^2} +
-    D_y \frac{\partial^2 C}{\partial y^2} +
-    D_z \frac{\partial^2 C}{\partial z^2} +
-    v_z \frac{\partial C}{\partial z}  = R_f \frac{\partial C}{\partial t}.  
-    \label{unidirflow}
-  \end{align}
+Solutions to this equation can be categorized by their boundary conditions and 
+those boundary conditions serve as the interfaces between components in the 
+Cyder library of nuclide transport models.
 
   \begin{figure}[htp!]
     \begin{center}
@@ -76,35 +48,6 @@
     Source Term, Dirichlet, Neumann, and Cauchy boundary conditions.}
     \label{fig:flow}
   \end{figure}
-  }
-\end{frame}
-
-\begin{frame}
-  \frametitle{Boundary Conditions}
-  \footnotesize{
-    \textbf{First, specified-head or Dirichlet type} boundary conditions define a specified species 
-    concentration
-      \begin{align}
-      C(\vec{r},t) = C_0(\vec{r},t)\hspace{1mm}\mbox{ for } \vec{r} \in 
-      \Gamma.
-      \intertext{where}
-      \vec{r} &= \mbox{ position vector }\nonumber\\
-      \Gamma &= \mbox{ domain boundary }\nonumber\\
-    \end{align}  
-    
-    \textbf{Second, specified-flow, or Neumann type} boundary conditions describe a full set of 
-    concentration gradients 
-   \begin{align}
-      \frac{\partial C(\vec{r},t)}{\partial r} &= \theta D\vec{J}(t) 
-      \hspace{1mm}\mbox{ for } \vec{r} \in \Gamma.
-    \end{align}    
-    
-    \textbf{Third, head-dependent, or Cauchy type}, defines a solute 
-    flux along the boundary,
-      \begin{align}
-      -D\frac{\partial C}{\partial z} + v_zC &= v_zC(\vec{r},t) 
-      \hspace{1mm}\mbox{ for }\vec{r} \in \Gamma.
-    \end{align}    
   }
 \end{frame}
 
@@ -134,66 +77,7 @@ For each timestep :
 }
 \end{frame}
 
-\begin{frame}
-  \frametitle{Nested Components}
-  Each component represents a 
-  \begin{itemize}
-    \item Waste Form
-    \item Waste Package
-    \item Buffer
-    \item or Far Field (geologic medium).
-  \end{itemize}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Nested Components}
-  Each Component has : 
-  \begin{itemize}
-    \item a Geometry to describe its dimensions and location
-    \item a NuclideModel for contaminant transport 
-    \item a ThermalModel for heat transport
-    \item a Parent Component at its external barrier
-    \item one or more Daughter Components at its internal barrier
-  \end{itemize}
-
-  Components have other data members such as a Type (WF, WP, BUFFER, FF), a 
-  material data table, a start date, etc. 
-\end{frame}
-
-\begin{frame}
-  The NuclideModel in a Component can be interchangeably represented by any of 
-  the four nuclide transport models. 
-    \begin{itemize}
-      \item Degradation Rate Based Failure Model
-      \item Mixed Cell with Degradation, Sorption, Solubility Limitation
-      \item Lumped Parameter Model
-      \item 1D Advection Dispersion Solution
-    \end{itemize}
-\end{frame}
-
 \subsection{Degradation Rate With Congruent Release}
-\begin{frame}
-  \frametitle{Radionuclide Transport: Rate Based Congruent Release}
-  \footnotesize{
-  Contaminants are released congruently with degradation of the component.
-
-  That is, for a rate of $\epsilon [\%]$ per year, where the initial condition is some 
-  contained mass, $m_0$, the boundary conditions supplied to external components 
-  at the outer boundary $r_{bc}$are :
-
-  \begin{align}
-    \intertext{Source Term}
-    \dot{m} &= \epsilon m_0
-    \intertext{Dirichlet}
-    C(r_{bc}) &= \dot{m}/V_w 
-    \intertext{Neumann}
-    \frac{\partial C}{\partial r} &= ( \dot{m}/V_w - C_{ext} )/(r_{ext} - r_{in})
-    \intertext{Cauchy}
-    -D \frac{\partial C}{\partial x}\big|_{x=x_{bc}} + v_xc &= vC(x_{bc}) 
-  \end{align}
-  }
-\end{frame}
 
 \begin{frame}
   \frametitle{Radionuclide Transport: Rate Based Congruent Release}
@@ -207,25 +91,12 @@ $m_{ij}(t)$, from cell $i$ to cell $j$ at time $t$ :
   \dot{m}_{ij}(t) &= f_i(\cdots)m_i(t)
   \label{deg_rate_source_cont}
   \intertext{where}
-  \dot{m}_{ij} &= \mbox{ the rate of mass transfer from i to j 
-  }[kg/s]\nonumber\\
+  \dot{m}_{ij} &= \mbox{ the rate of mass transfer from i to j }[kg/s]\nonumber\\
   f_i &= \mbox{ fractional degradation rate in cell i }[1/s] \nonumber\\
   m_i &= \mbox{ mass in cell i }[kg] \nonumber\\
   t &= \mbox{ time  }[s].\nonumber
 \end{align}
-}
-\end{frame}
-
-
-\begin{frame}
-  \frametitle{Radionuclide Transport: Rate Based Congruent Release}
-  \footnotesize{
-For a situation as in Cyder and Cyclus, with discrete timesteps, the timesteps 
-are 
-assumed to be small enough to assume a constant rate $m_{ij}$ over the course of 
-the timestep. The mass transferred between discrete times $t_{n-1}$ and $t_n$ is 
-thus a simple linear function of the transfer rate in 
-\eqref{deg_rate_source_cont}, 
+For a situation as in Cyder and Cyclus, with discrete timesteps, the mass transferred between discrete times $t_{n-1}$ and $t_n$ is a simple linear function of the transfer rate in \eqref{deg_rate_source_cont}, 
 
 \begin{align}
   m_{ij}^n &= \int_{t_{n-1}}^{t_n}\dot{m}_{ij}(t')dt' \nonumber\\
@@ -236,27 +107,183 @@ thus a simple linear function of the transfer rate in
 \end{frame}
 
 
-\subsection{Mixed Cell With Sorption and Solubility}
+
 \begin{frame}
-  \frametitle{Radionuclide Transport: Mixed Cell}
+  \frametitle{Radionuclide Transport: Rate Based Congruent Release}
+  \footnotesize{
+  Contaminants are released congruently with degradation of the component. For discrete timesteps, this gives in the following boundary conditions for the mass transfer, 
+$m_{ij}(t)$, from cell $i$ to cell $j$ at time $t$ :
+
+  \begin{align}
+    \intertext{\textbf{Source Term}}
+    m_{ij}^n &= f_i(\cdots)m_i^{n-1}\left(t_n - t_{n-1}\right).
+  \end{align}
+}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Radionuclide Transport: Rate Based Congruent Release}
+  \footnotesize{
+  Contaminants are released congruently with degradation of the component. For discrete timesteps, this gives in the following boundary conditions for the mass transfer, 
+$m_{ij}(t)$, from cell $i$ to cell $j$ at time $t$ :
+  \begin{align}
+    \intertext{\textbf{Dirichlet}}
+    C_{ij}^n &= \frac{m_i^n}{V_{vi}}\nonumber\\
+    &= \frac{\mbox{ solute mass in cell i }}{\mbox{ void volume in cell i}}.\nonumber 
+  \end{align}
+}
+\end{frame}
+\begin{frame}
+  \frametitle{Radionuclide Transport: Rate Based Congruent Release}
+  \footnotesize{
+  Contaminants are released congruently with degradation of the component. For discrete timesteps, this gives in the following boundary conditions for the mass transfer, 
+$m_{ij}(t)$, from cell $i$ to cell $j$ at time $t$ :
+  \begin{align}
+    \intertext{\textbf{Neumann}}
+    \frac{\partial C}{\partial z}\hat{k}  &=\frac{ \left(\frac{\dot{m}}{\theta_{i0} V_T - C_{1} }\right) }{z_1 - z_0}\hat{k}\nonumber\\
+\theta_i &= \mbox{ porosity in cell i }[-] \nonumber\\
+\end{align}
+}
+\end{frame}
+\begin{frame}
+  \frametitle{Radionuclide Transport: Rate Based Congruent Release}
+  \footnotesize{
+  Contaminants are released congruently with degradation of the component. For discrete timesteps, this gives in the following boundary conditions for the mass transfer, 
+$m_{ij}(t)$, from cell $i$ to cell $j$ at time $t$ :
+\begin{align}
+  \intertext{\textbf{Cauchy}}
+    -\theta_i D_{zz} \frac{\partial C}{\partial z}\hat{k} + \theta_iv_zC\hat{k} 
+    &= \theta_{i0} v_0 C_0\hat{k}\nonumber\\
+    -\theta_i D_{zz} \frac{ \left(\frac{\dot{m}}{\theta_{i0} V_T - C_{1} 
+  }\right) }{z_1 - z_0}\hat{k} + \theta_i^n v_z^n C_i^n \hat{k}&= \theta_i^{n-1} 
+  v_z^{n-1} C_i^{n-1}\hat{k}
+    \intertext{where}
+    D_{zz} &= \mbox{ $\hat{k}$ component diffusion tensor component in $\hat{k}$ direction }[m^2/s] \nonumber\\
+    C_i &= \mbox{ concentration in cell i }[kg/m^3].\nonumber\\
+  \end{align}
+  }
+\end{frame}
+
+\subsection{Mixed Cell With Sorption and Solubility Limitation}
+\begin{frame}
+  \frametitle{Radionuclide Transport : Mixed Cell with Sorption and Solubility}
+  \footnotesize{
   % Waste Form
+  \begin{columns}[c]
+  \column{0.45\textwidth}
+Before degradation, the volume of the intact matrix can be expressed as
+\begin{align}
+V_{im}(t_n) &= V_T.
+\end{align}
+
+The volume of free fluid can be expressed as
+\begin{align}
+V_{ff}(t_n) &= \theta V_T .
+\end{align}
+
+  \column{0.55\textwidth}
   \begin{figure}[h!]
     \begin{center}
-      \includegraphics[height=.6\textwidth]{cyder/images/mixed_cell_whole.eps}
+      \includegraphics[width=\textwidth]{cyder/images/mixed_cell_whole.eps}
     \end{center}
   \end{figure}
+\end{columns}
+    }
 \end{frame}
 
 \begin{frame}[ctb!]
-  \frametitle{Radionuclide Transport: Mixed Cell}
+  \frametitle{Radionuclide Transport : Mixed Cell with Sorption and Solubility}
   % Waste Form
+  \footnotesize{
+  \begin{columns}[c]
+  \column{0.45\textwidth}
+After some time degrading, the volume of the intact matrix can be expressed as
+\begin{align}
+V_{im}(t_n) &= V_T - V_T\int_{t_0}^{t_n} f(\cdots) dt.
+\label{vim}
+\end{align}
+
+The volume of free fluid can be expressed as
+\begin{align}
+V_{ff}(t_n) &= \theta V_T \int_{t_0}^{t_n} f(\cdots) dt.
+\label{vff}
+\end{align}
+
+Finally, the volume of the degraded and precipitated solids can be expressed as
+\begin{align}
+V_{ps}(t_n) &= (1 - \theta)V_T\int_{t_0}^{t_n} f(\cdots) dt.
+\label{vps} 
+\end{align}
+ 
+
+\column{0.55\textwidth}
   \begin{figure}[h!]
     \begin{center}
-      \includegraphics[height=.6\textwidth]{cyder/images/mixed_cell_degraded.eps}
+      \includegraphics[width=\textwidth]{cyder/images/mixed_cell_degraded.eps}
     \end{center}
   \end{figure}
+\end{columns}
+}
 \end{frame}
 
+\begin{frame}
+  \frametitle{Radionuclide Transport : Mixed Cell Sorption}
+  \footnotesize{
+
+The mass of contaminant sorbed into the degraded and precipitated solids can be
+found using a linear isotherm model \cite{schwartz_fundamentals_2003},
+characterized by the relationship 
+\begin{align}
+s_{i} &= K_{di} c_{i}
+\label{linear_iso}
+\intertext{where}
+s_i &= \mbox{ the solid concentration of isotope i }[kg/kg]\nonumber\\
+K_{di} &= \mbox{ the distribution coefficient of isotope i}[m^3/kg]\nonumber\\
+c_i &= \mbox{ the liquid concentration of isotope i }[kg/m^3].\nonumber
+\end{align}
+
+From the sorbed contaminant mass, we find the non-sorbed contaminant mass in the free fluid,
+
+\begin{align}
+m_{ffl}   &= m_{ffT} - \frac{1}{2} \left(m_{ffT} - m_{psm} - \frac{V_{ff}}{K_d}\right) \nonumber\\
+          & \mp \frac{1}{2} \sqrt{m_{ffT}^2 + 2m_{ffT}\left(m_{psm} - 
+          \frac{V_{ff}}{K_d}\right) + \left(m_{psm} + 
+          \frac{V_{ff}}{K_d}\right)^2}.
+\label{m_ffl_full}
+\intertext{where}
+m_{ffT}  &= \mbox{ total degraded contaminant mass }[kg]\nonumber\\
+m_{psm}  &= \mbox{ noncontaminant mass in degraded and precipitated solids }[kg]\nonumber\\
+m_{psc}  &= \mbox{ contaminant mass in degraded and precipitated solids }[kg]\nonumber\\
+\rho_b   &= \mbox{ bulk (dry) density of the medium }[kg/m^3].\nonumber\\
+\end{align}
+
+    }
+\end{frame}
+\begin{frame}
+  \frametitle{Radionuclide Transport : Mixed Cell Solubility Limitation}
+  \footnotesize{
+In addition to engineered barriers, contaminant transport is constrained by 
+  the solubility limit \cite{hedin_integrated_2002}, 
+    \begin{align}
+      m_{s,i} &\leq V_w C_{sol,i},
+    \intertext{where}
+      m_{s,i} &= \mbox{ solubility limited mass of isotope i in volume }V_w [kg]\nonumber\\ 
+      V_w &= \mbox{ volume of the solution }[m^3]\nonumber\\
+      C_{sol,i} &= \mbox{ solubility limit, the maximum concentration of i }[kg/m^3].\nonumber
+    \end{align}
+
+
+The desired boundary conditions can be expressed in terms of $m_{ffl}$. First, the 
+Dirichlet boundary condition is 
+\begin{align}
+C(x,y,z,t) = \frac{m_{ffl}(t)}{V_{ff}(t)}\forall (x,y,x) \in \Gamma.
+\label{dirichlet_mixed}
+\end{align}
+
+From this boundary condition in combination with global advective velocity 
+data, all other boundary conditions can be found. 
+    }
+\end{frame}
 
 \subsection{Lumped Parameter Transport}
 \begin{frame}
@@ -274,16 +301,12 @@ and the outgoing concentration, $C_{out}(t)$.}
 \end{figure}
 
 \begin{align}
-  C_{out}(t) &= \int_{-\infty}^t C_{in}(t')g(t-t')e^{-\lambda(t-t')}dt'
-  \label{lumped1}
-  \intertext{equivalently}
   C_{out}(t) &= \int_0^\infty C_{in}(t-t')g(t')e^{-\lambda t'}dt'
   \label{lumped2}
   \intertext{where}
   t'  &= \mbox{ time of entry }[s]\nonumber\\
   t-t'  &= \mbox{ transit time }[s]\nonumber\\
-  g(t-t')  &= \mbox{ response function, a.k.a. transit time 
-  distribution}[-]\nonumber]\\
+  g(t-t')  &= \mbox{ response function, a.k.a. transit time distribution}[-]\nonumber\\
   \lambda &= \mbox{ radioactive decay constant, 1 to neglect}[s^{-1}].\nonumber
 \end{align}
 }
@@ -305,16 +328,10 @@ engineering applications \cite{maloszewski_lumped_1996} include the Piston Flow 
   {4t'}}, \intertext{where}
   \texttt{Pe }  &= \mbox{ Peclet number for mass diffusion }[-]\nonumber\\
   t_t  &= \mbox{ mean tracer age }[s]\nonumber\\
-    &= t_w \mbox{ if there are no stagnant areas }\nonumber\\
-  t_w  &= \mbox{ mean residence time of water }[s]\nonumber\\
-       &= \frac{V_m}{Q}\nonumber\\
-       &= \frac{z}{v_z}\nonumber\\
        &= \frac{z\theta_e}{q}\nonumber
   \intertext{in which}
   V_m  &= \mbox{ mobile water volume }[m^3]\nonumber\\
-  Q    &= \mbox{ volumetric flow rate }[m^3/s]\nonumber\\
   z    &= \mbox{ average travel distance in flow direction }[m]\nonumber\\
-  v_z  &= \mbox{ mean water velocity}[m/s]\nonumber\\
   q    &= \mbox{ Darcy Flux }[m/s]\nonumber\\
   \theta_e &= \mbox{ effective (connected) porosity }[\%].\nonumber
 \end{align}
@@ -340,35 +357,6 @@ source boundary are given in \cite{maloszewski_lumped_1996},
 }
 \end{frame}
 
-
-\begin{frame}
-  \frametitle{Radionuclide Transport: Lumped Parameter Transport Model}
-\footnotesize{
-Selection of the response function is usually based on experimental tracer 
-results. Canonical forms include :
-\begin{align}
-  \mbox{the Piston Flow Model (PFM), } g(t') &= \delta{(t'-t_t))}\\
-  \mbox{ the Exponential Model (EM), } g(t') &= 
-  \frac{1}{t_t}e^{-\frac{t'}{t_t}}\\
-  \mbox{ and the Dispersion Model (DM), } g(t') &= \frac{\left[ \left( \frac{t\pi t'}{t_t Pe} \right) 
-  (\frac{1}{t'})e^{- \left( 1- \frac{t'}{t_t}  \right)^2} 
-  \right]}{\frac{4t'}{t_tPe}}, 
-  \intertext{where}
-  Pe  &= \mbox{ Peclet number }[-]\nonumber\\
-  t_t  &= \mbox{ mean tracer age }[s]\nonumber\\
-    &= t_w \mbox{ if there are no stagnant areas}\nonumber\\
-  t_w  &= \mbox{ mean residence time of water}[s].\nonumber\\
-\intertext{The solutions to these for constant concentration at the source 
-boundary give}
-  C(t) &=\begin{cases}
-    PFM & C_0e^{-\lambda t_t}\\
-    EM  & \frac{C_0}{1+\lambda t_t}\\
-    DM  & \frac{C_0e^{Pe\sqrt{\left( 1-(1+\frac{4\lambda t_t}{Pe})\right)}}}{2}\\
-  \end{cases}
-  \label{lumpedsolns}
-\end{align}
-}
-\end{frame}
 
 \subsection{1D Semi-Infinite, Cauchy B.C.}
 \begin{frame}

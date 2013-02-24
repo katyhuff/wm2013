@@ -4,7 +4,8 @@
 \begin{frame}[ctb!]
   \frametitle{Cyclus Framework}
   \footnotesize{
-  Cyder was designed for use within the Cyclus Fuel Cycle Simulator Framework.
+  Cyder was designed for use within the Cyclus Fuel Cycle Simulator Framework 
+  (cyclus.github.com, \cite{huff_cyclus:_2010}.
   \begin{figure}[htb!]
     \begin{center}
       \includegraphics[width=0.6\textwidth]{./cyder/images/simulations.eps}
@@ -30,7 +31,8 @@ data) and accept arbitrary waste stream isotopic compositions.
   \begin{figure}[htbp!]
     \begin{center}
       \includegraphics[width=0.6\textwidth]{cyder/images/componentLoading.eps}
-      \caption{The Cyder architecture modularly permits exchange of models and data.}
+      \caption{The Cyder architecture modularly permits exchange of models and 
+      data. Documentation and source code can be found at katyhuff.github.com/cyder.}
     \end{center}
   \end{figure}
 }
@@ -120,5 +122,33 @@ $\Delta x$, and tunnel spacing, $\Delta y$ are user specified.
 \end{columns}
 
 }
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Nested Components}
+  Each Component has : 
+  \begin{itemize}
+    \item a Geometry to describe its dimensions and location
+    \item a NuclideModel for contaminant transport 
+    \item a ThermalModel for heat transport
+    \item a Parent Component at its external barrier
+    \item one or more Daughter Components at its internal barrier
+  \end{itemize}
+
+  Components have other data members such as a Type (WF, WP, BUFFER, FF), a 
+  material data table, a start date, etc. 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nested Components}
+  The NuclideModel in a Component can be interchangeably represented by any of 
+  the four nuclide transport models. 
+    \begin{itemize}
+      \item Degradation Rate Based Failure Model
+      \item Mixed Cell with Degradation, Sorption, Solubility Limitation
+      \item Lumped Parameter Model
+      \item 1D Advection Dispersion Solution
+    \end{itemize}
 \end{frame}
 
