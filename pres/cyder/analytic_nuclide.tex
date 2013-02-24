@@ -63,7 +63,7 @@
     D_x \frac{\partial^2 C}{\partial x^2} +
     D_y \frac{\partial^2 C}{\partial y^2} +
     D_z \frac{\partial^2 C}{\partial z^2} +
-    v_x \frac{\partial C}{\partial z}  = R_f \frac{\partial C}{\partial t}.  
+    v_z \frac{\partial C}{\partial z}  = R_f \frac{\partial C}{\partial t}.  
     \label{unidirflow}
   \end{align}
 
@@ -95,8 +95,8 @@
     \textbf{Second, specified-flow, or Neumann type} boundary conditions describe a full set of 
     concentration gradients 
    \begin{align}
-      \frac{\partial C(\vec{r},t)}{\partial r} &= \theta D\vec{J}(t) \hspace{1mm}\mbox{ for } 
-      \vec{r} \in \Gamma
+      \frac{\partial C(\vec{r},t)}{\partial r} &= \theta D\vec{J}(t) 
+      \hspace{1mm}\mbox{ for } \vec{r} \in \Gamma.
     \end{align}    
     
     \textbf{Third, head-dependent, or Cauchy type}, defines a solute 
@@ -114,12 +114,10 @@
 Component immediately containing it and some information radially 
 inward to the nested Component it contains. 
 
-That is, in Component 0, the innermost Component in a nested series, the mass or concentration 
-distribution in the Component at time $t_n$ is found from the inner boundary 
-condition at time $t_n$ and the outer boundary condition at $t_{n-1}$. Then, from 
-the resulting mass or concentration distribution, I can solve, numerically, for 
-the outer boundary condition at $t_n$ which can, in turn, be used by the parent 
-component 1 as the $t_n$ inner boundary condition of its own solution. For each timestep :
+Mass distribution in Component 0 at time $t_n$ is found from the inner boundary 
+condition at time $t_n$ and the outer boundary condition at $t_{n-1}$. Outer 
+boundary conditions are solved for numerically at $t_n$.
+For each timestep :
 
 \begin{align}
   BC(i, r_o, c_1, t_n) &= f( BC(i, r_i, c_0, t_n), BC(i, r_o, c_1, t_{n-1}) )
@@ -263,7 +261,7 @@ thus a simple linear function of the transfer rate in
 \subsection{Lumped Parameter Transport}
 \begin{frame}
   \frametitle{Radionuclide Transport: Lumped Parameter Transport Model}
-
+\footnotesize{
 \begin{figure}[htbp!]
   \begin{center}
     \def\svgwidth{\textwidth}
@@ -274,8 +272,6 @@ according to a relationship between the incoming concentration, $C_{in}(t)$,
 and the outgoing concentration, $C_{out}(t)$.}
   \label{fig:lumpedseries}
 \end{figure}
-\footnotesize{
-
 
 \begin{align}
   C_{out}(t) &= \int_{-\infty}^t C_{in}(t')g(t-t')e^{-\lambda(t-t')}dt'
@@ -304,10 +300,10 @@ engineering applications \cite{maloszewski_lumped_1996} include the Piston Flow 
   \intertext{ the Exponential Model (EM) }
   g(t') &= \frac{1}{t_t}e^{-\frac{t'}{t_t}}
   \intertext{ and the Dispersion Model (DM), }
-  g(t') &= \left( \frac{\emph{Pe }t_t}{4\pi t'} \right)^{\frac{1}{2}}
-  \frac{1}{t'}e^{- \frac{\emph{Pe }t_t\left( 1- \frac{t'}{t_t}  \right)^2} 
+  g(t') &= \left( \frac{\texttt{Pe }t_t}{4\pi t'} \right)^{\frac{1}{2}}
+  \frac{1}{t'}e^{- \frac{\texttt{Pe }t_t\left( 1- \frac{t'}{t_t}  \right)^2} 
   {4t'}}, \intertext{where}
-  \emph{Pe}  &= \mbox{ Peclet number for mass diffusion }[-]\nonumber\\
+  \texttt{Pe }  &= \mbox{ Peclet number for mass diffusion }[-]\nonumber\\
   t_t  &= \mbox{ mean tracer age }[s]\nonumber\\
     &= t_w \mbox{ if there are no stagnant areas }\nonumber\\
   t_w  &= \mbox{ mean residence time of water }[s]\nonumber\\
@@ -336,8 +332,8 @@ source boundary are given in \cite{maloszewski_lumped_1996},
   C(t) &=\begin{cases}
     PFM & C_0e^{-\lambda t_t}\\
     EM  & \frac{C_0}{1+\lambda t_t}\\
-    DM & C_0e^{\frac{\emph{Pe}}{2}\left(1-\sqrt{1+\frac{4\lambda 
-    t_t}{\emph{Pe}}}\right)}.
+    DM & C_0e^{\frac{\texttt{Pe}}{2}\left(1-\sqrt{1+\frac{4\lambda 
+    t_t}{\texttt{Pe}}}\right)}.
   \end{cases}
   \label{lumpedsolns}
 \end{align}
